@@ -68,6 +68,6 @@ public class CartTests {
         driver.get(baseURL + "/koszyk/");
         int numberOfProducts = driver.findElements(productIsInCartLocator).size();
         Assertions.assertEquals(2, numberOfProducts, "Expected number of products in cart: 2" +
-        "\n Actual number of products in cart: " + numberOfProducts);
+        "\n Actual number of products: " + numberOfProducts);
     }
 }
