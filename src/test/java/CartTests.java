@@ -2,6 +2,8 @@ import org.junit.jupiter.api.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -34,7 +36,7 @@ public class CartTests {
     }
     @Test
     @DisplayName("No product added to cart should art be empty")
-    public void no_product_added_to_cart_should_art_be_empty(){
+    public void emptyCart(){
 
         //driver.get(baseURL + productWindSurURL);
         //driver.findElement(addToCartFromProductButtonLocator).click();
@@ -44,9 +46,17 @@ public class CartTests {
         Assertions.assertEquals(0, driver.findElements(productIsInCartLocator).size(),
                 "Number of products in cart is not 0");
     }
+
+    @Test
+    @DisplayName("No product added to cart should displayed info about empty cart")
+    public void emptyCartInfo(){
+
+    }
+
+
     @Test
     @DisplayName("Product added to cart should cart have one product")
-    public void produc_added_to_cart_should_cart_have_one_product(){
+    public void oneProductCart(){
         driver.get(baseURL + productWspinFerURL);
         driver.findElement(addToCartFromProductButtonLocator).click();
 
@@ -59,7 +69,7 @@ public class CartTests {
     }
     @Test
     @DisplayName("Two products added to cart should cart have two products")
-    public void two_roducts_added_to_cart_shoul_cart_have_two_products(){
+    public void twoProductsCart(){
         driver.get(baseURL+productWindSurURL);
         driver.findElement(addToCartFromProductButtonLocator).click();
         driver.get(baseURL+productWspinFerURL);
@@ -69,5 +79,39 @@ public class CartTests {
         int numberOfProducts = driver.findElements(productIsInCartLocator).size();
         Assertions.assertEquals(2, numberOfProducts, "Expected number of products in cart: 2" +
         "\n Actual number of products: " + numberOfProducts);
+    }
+    @Test
+    @DisplayName("Changing quantity in cart should change total price")
+    public void changingQuantityAndPrice(){
+        driver.get(baseURL + productWspinFerURL);
+        driver.findElement(addToCartFromProductButtonLocator).click();
+
+        driver.get(baseURL + "/koszyk/");
+        driver.findElement(quantityFieldInCartLocator).clear();
+        driver.findElement(quantityFieldInCartLocator).sendKeys("2");
+        driver.findElement(updateCartButtonLocator).click();
+
+        wait.until(ExpectedConditions.numberOfElementsToBe(loadingIconLocator, 0));
+
+        Assertions.assertEquals("5 598,00 zł", driver.findElement(totalPriceInCartLocator).getText(),
+                "Total price after quantity update is not what we expected");
+    }
+
+    @Test
+    @DisplayName("Changing quantity in cart to negative should not update total price")
+    public void changingQuantityNegativeAndPrice(){
+        driver.get(baseURL + productWspinFerURL);
+        driver.findElement(addToCartFromProductButtonLocator).click();
+
+        driver.get(baseURL + "/koszyk/");
+        driver.findElement(quantityFieldInCartLocator).clear();
+        driver.findElement(quantityFieldInCartLocator).sendKeys("-3");
+
+        driver.findElement(updateCartButtonLocator).click();
+
+        wait.until(ExpectedConditions.numberOfElementsToBe(loadingIconLocator, 0));
+
+        Assertions.assertEquals("2 799,00 zł", driver.findElement(totalPriceInCartLocator).getText(),
+                "total price was changed. It isn't what is expected");
     }
 }
