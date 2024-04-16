@@ -1,3 +1,5 @@
+package pageobjects;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -5,7 +7,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class CartPage extends BasePage{
+public class CartPage extends BasePage {
 
     private final By productItem = By.cssSelector("tr.cart_item");
     private final By quantityField = By.cssSelector("input.qty");
@@ -16,8 +18,7 @@ public class CartPage extends BasePage{
     private final By goToPayButton = By.className("wc-forward");
     private final By hidingInfo = By.cssSelector(".woocommerce-store-notice__dismiss-link");
 
-    private final WebDriver driver;
-
+    private  WebDriver driver;
     public CartPage(WebDriver driver) {
         super(driver);
     }
