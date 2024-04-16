@@ -1,25 +1,14 @@
 package tests;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.CartPage;
 import pageobjects.ProductPage;
 
-public class CartTests {
-    WebDriver driver;
+public class CartTests extends BaseTests{
     private final String productWindSurURLSlug = "/fuerteventura-sotavento/";
     private final String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
     private final String productFuertaSlug = "fuerteventura-sotavento/";
     private final String granKoscSlug = "gran-koscielcow/";
 
-    @BeforeEach
-    public void setup(){
-        driver = new ChromeDriver();
-    }
-    @AfterEach
-    public void quitDriver(){
-        driver.quit();
-    }
     @Test
     @DisplayName("No product added to cart should cart be empty")
     public void emptyCart(){
