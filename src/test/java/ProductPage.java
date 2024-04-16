@@ -1,15 +1,13 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class ProductPage {
-    private final WebDriver driver;
+public class ProductPage extends BasePage{
     private final By addToCart = By.cssSelector("[name=add-to-cart]");
     private final By goToCart = By.cssSelector(".woocommerce-message>.button");
     public ProductPage(WebDriver driver){
-        this.driver = driver;
+        super(driver);
     }
     public ProductPage go(String productWspinFerURLSlug) {
-        String baseURL = "https://fakestore.testelka.pl/";
         driver.get(baseURL + "/product/" + productWspinFerURLSlug);
         return this;
     }

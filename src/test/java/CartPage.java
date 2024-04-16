@@ -5,7 +5,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class CartPage {
+public class CartPage extends BasePage{
 
     private final By productItem = By.cssSelector("tr.cart_item");
     private final By quantityField = By.cssSelector("input.qty");
@@ -13,15 +13,15 @@ public class CartPage {
     private final By totalPrice = By.cssSelector(".cart-subtotal [data-title=Kwota]");
     private final By loadingIcon = By.cssSelector(".blockUI");
     private final By emptyCartInfo = By.cssSelector(".entry-content .cart-empty");
+    private final By goToPayButton = By.className("wc-forward");
+    private final By hidingInfo = By.cssSelector(".woocommerce-store-notice__dismiss-link");
 
     private final WebDriver driver;
 
     public CartPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
-
     public void go() {
-        String baseURL = "https://fakestore.testelka.pl/";
         driver.get(baseURL + "/koszyk/");
     }
 
@@ -71,7 +71,6 @@ public class CartPage {
     public CartPage changeQuantityWithoutRefresh(int quantity) {
         driver.findElement(quantityField).clear();
         driver.findElement(quantityField).sendKeys(String.valueOf(quantity));
-
         return this;
     }
 }

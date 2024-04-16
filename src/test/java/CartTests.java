@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CartTests {
@@ -169,5 +166,4 @@ public class CartTests {
         Assertions.assertFalse(cartPage.updateButtonIsEnabled(),
                 "Update button is enabled while it shouldn't. There are no changes in cart");
     }
-
 }
