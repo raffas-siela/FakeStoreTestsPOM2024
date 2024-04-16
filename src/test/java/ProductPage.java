@@ -5,8 +5,6 @@ public class ProductPage {
     private final WebDriver driver;
     private final By addToCart = By.cssSelector("[name=add-to-cart]");
     private final By goToCart = By.cssSelector(".woocommerce-message>.button");
-
-
     public ProductPage(WebDriver driver){
         this.driver = driver;
     }

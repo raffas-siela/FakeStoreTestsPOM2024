@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -10,7 +9,6 @@ public class CartTests {
     String baseURL = "https://fakestore.testelka.pl/";
 
     String productWindSurURLSlug = "/fuerteventura-sotavento/";
-    String productWspinFerURL = "/product/wspinaczka-via-ferraty/";
     String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
 
     @BeforeEach
@@ -22,7 +20,7 @@ public class CartTests {
         driver.quit();
     }
     @Test
-    @DisplayName("No product added to cart should cart be empty_POM_Testelka")
+    @DisplayName("No product added to cart should cart be empty")
     public void emptyCart(){
         CartPage cartpage = new CartPage(driver);
         cartpage.go();
@@ -49,7 +47,7 @@ public class CartTests {
     }
 
     @Test
-    @DisplayName("Product added to cart should cart have one product_POM_Testelka")
+    @DisplayName("Product added to cart should cart have one product")
     public void oneProductCart(){
         ProductPage productPage = new ProductPage(driver);
         CartPage cartPage = productPage
@@ -65,7 +63,7 @@ public class CartTests {
     }
 
     @Test
-    @DisplayName("One product added to cart should cart have one products_POM_Testelka")
+    @DisplayName("One product added to cart should cart have one products")
     public void oneProductsCart(){
         ProductPage productPage = new ProductPage(driver);
         CartPage cartPage = productPage
@@ -73,7 +71,7 @@ public class CartTests {
                 .addToCart()
                 .goToCart();
 
-    int numberOfProducts = cartPage.getNumberOfProducts();
+        int numberOfProducts = cartPage.getNumberOfProducts();
 
         Assertions.assertEquals(1, numberOfProducts,
                 "Expected number of products in cart: 2" +
@@ -81,7 +79,7 @@ public class CartTests {
     }
 
     @Test
-    @DisplayName("Two products added to cart should cart have two products_POM_Testelka")
+    @DisplayName("Two products added to cart should cart have two products")
     public void twoProductsCart(){
         ProductPage productPage = new ProductPage(driver);
         CartPage cartPage = productPage
@@ -99,11 +97,11 @@ public class CartTests {
     }
 
     @Test
-    @DisplayName("Changing quantity in cart should change total price_POM_Testelka")
+    @DisplayName("Changing quantity in cart should change total price")
     public void changingQuantityAndPrice(){
         ProductPage productPage = new ProductPage(driver);
         CartPage cartPage = productPage
-                .go(productWspinFerURL)
+                .go(productWspinFerURLSlug)
                 .addToCart()
                 .goToCart()
                 .changeQuantity(2);
@@ -113,7 +111,7 @@ public class CartTests {
     }
 
     @Test
-    @DisplayName("Changing quantity in cart to negative should not update total price_testelka")
+    @DisplayName("Changing quantity in cart to negative should not update total price")
     public void changingQuantityNegativeAndPrice(){
         ProductPage productPage = new ProductPage(driver);
         CartPage cartPage = productPage
