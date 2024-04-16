@@ -2,10 +2,11 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 public class ProductPage {
-    public Object goToCart;
-    By addToCartButtonLocator = By.cssSelector("[name=add-to-cart]");
-    By goToCartButtonLocator = By.cssSelector(".woocommerce-message>.button");
     private final WebDriver driver;
+    private final By addToCart = By.cssSelector("[name=add-to-cart]");
+    private final By goToCart = By.cssSelector(".woocommerce-message>.button");
+
+
     public ProductPage(WebDriver driver){
         this.driver = driver;
     }
@@ -16,12 +17,12 @@ public class ProductPage {
     }
 
     public ProductPage addToCart() {
-        driver.findElement(addToCartButtonLocator).click();
+        driver.findElement(addToCart).click();
         return this;
     }
 
     public CartPage goToCart() {
-        driver.findElement(goToCartButtonLocator).click();
+        driver.findElement(goToCart).click();
         return new CartPage(driver);
     }
 }
