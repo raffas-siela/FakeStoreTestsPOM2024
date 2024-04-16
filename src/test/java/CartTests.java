@@ -1,6 +1,9 @@
 import org.junit.jupiter.api.*;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class CartTests {
@@ -8,8 +11,11 @@ public class CartTests {
     WebDriverWait wait;
     String baseURL = "https://fakestore.testelka.pl/";
 
-    String productWindSurURLSlug = "/fuerteventura-sotavento/";
-    String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
+    private final String productWindSurURLSlug = "/fuerteventura-sotavento/";
+    private final String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
+    private final String productFuertaSlug = "fuerteventura-sotavento/";
+    private final String granKoscSlug = "gran-koscielcow/";
+
 
     @BeforeEach
     public void setup(){
@@ -123,4 +129,45 @@ public class CartTests {
         Assertions.assertEquals("2 799,00 zł", cartPage.getTotalPrice(),
                 "total price was changed. It isn't what is expected");
     }
+
+    @Test
+    @DisplayName("Adding and increasing number of products should change product price")
+    public void addingAndIncreasingChangeProductPrice() {
+        ProductPage productPage = new ProductPage(driver);
+        CartPage cartPage = productPage
+                .go(productFuertaSlug)
+                .addToCart()
+                .goToCart()
+                .changeQuantity(2);
+
+        Assertions.assertEquals("7 200,00 zł", cartPage.getTotalPrice(),
+                "Total price is not correct");
+    }
+
+    @Test
+    @DisplayName("Cart changed should update button enabled")
+    public void cartChangedUupdateButtonEnabled(){
+        ProductPage productPage = new ProductPage(driver);
+        CartPage cartPage = productPage
+                .go(granKoscSlug)
+                .addToCart()
+                .goToCart()
+                .changeQuantityWithoutRefresh(2);
+
+        Assertions.assertTrue(cartPage.updateButtonIsEnabled(),
+                "Update button isn't enabled while it should. There are changes in cart");
+    }
+    @Test
+    @DisplayName("Cart not changed should update button disabled")
+    public void cart_not_changed_should_update_button_disabled(){
+        ProductPage productPage = new ProductPage(driver);
+        CartPage cartPage = productPage
+                .go(granKoscSlug)
+                .addToCart()
+                .goToCart();
+
+        Assertions.assertFalse(cartPage.updateButtonIsEnabled(),
+                "Update button is enabled while it shouldn't. There are no changes in cart");
+    }
+
 }
