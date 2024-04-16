@@ -7,12 +7,12 @@ import java.time.Duration;
 
 public class CartPage {
 
-    private By productItem = By.cssSelector("tr.cart_item");
-    private By quantityField = By.cssSelector("input.qty");
-    private By updateCartButton = By.cssSelector("[name=update_cart]");
-    private By totalPrice = By.cssSelector(".cart-subtotal [data-title=Kwota]");
-    private By loadingIcon = By.cssSelector(".blockUI");
-    private By emptyCartInfo = By.cssSelector(".entry-content .cart-empty");
+    private final By productItem = By.cssSelector("tr.cart_item");
+    private final By quantityField = By.cssSelector("input.qty");
+    private final By updateCartButton = By.cssSelector("[name=update_cart]");
+    private final By totalPrice = By.cssSelector(".cart-subtotal [data-title=Kwota]");
+    private final By loadingIcon = By.cssSelector(".blockUI");
+    private final By emptyCartInfo = By.cssSelector(".entry-content .cart-empty");
     private final WebDriver driver;
 
     public CartPage(WebDriver driver) {
@@ -48,7 +48,6 @@ public class CartPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
         wait.until(ExpectedConditions.numberOfElementsToBe(loadingIcon, 0));
         return this;
-
     }
 
     public String getInfoEmpty() {
