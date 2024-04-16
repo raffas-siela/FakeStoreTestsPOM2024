@@ -1,23 +1,11 @@
 package tests;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import pageobjects.MainPage;
 import pageobjects.ProductPage;
 import pageobjects.WishlistPage;
 
-public class WishListTests {
-    WebDriver driver;
+public class WishListTests extends BaseTests {
     private final String productWspinFerSlug = "/wspinaczka-via-ferraty/";
-
-    @BeforeEach
-    public void setup(){
-        driver = new ChromeDriver();
-    }
-    @AfterEach
-    public void quitDriver(){
-        driver.quit();
-    }
 
     @Test
     @DisplayName("Product added to wishlist should wishlist has one item")
