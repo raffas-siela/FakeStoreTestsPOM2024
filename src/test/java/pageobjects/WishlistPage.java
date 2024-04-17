@@ -1,11 +1,12 @@
 package pageobjects;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import helpers.Browser;
+
 
 public class WishlistPage extends BasePage{
     private final By productsItems = By.cssSelector(".wishlist-items-wrapper");
-    protected WishlistPage(WebDriver driver) {
-        super(driver);
+    protected WishlistPage(Browser browser) {
+        super(browser);
     }
 
     public int getNumberOfProducts() {

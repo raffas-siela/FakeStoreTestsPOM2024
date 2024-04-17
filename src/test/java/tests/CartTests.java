@@ -12,7 +12,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("No product added to cart should cart be empty")
     public void emptyCart(){
-        CartPage cartpage = new CartPage(driver);
+        CartPage cartpage = new CartPage(browser);
         cartpage.go();
 
         Assertions.assertEquals(0, cartpage.getNumberOfProducts(),
@@ -22,7 +22,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("Two product added to cart and deleted should displayed info about empty cart")
     public void emptyCartInfo(){
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productWspinFerURLSlug)
                 .addToCart()
@@ -39,7 +39,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("Product added to cart should cart have one product")
     public void oneProductCart(){
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productWindSurURLSlug)
                 .addToCart()
@@ -55,7 +55,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("One product added to cart should cart have one products")
     public void oneProductsCart(){
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productWspinFerURLSlug)
                 .addToCart()
@@ -71,7 +71,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("Two products added to cart should cart have two products")
     public void twoProductsCart(){
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productWindSurURLSlug)
                 .addToCart()
@@ -89,7 +89,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("Changing quantity in cart should change total price")
     public void changingQuantityAndPrice(){
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productWspinFerURLSlug)
                 .addToCart()
@@ -103,7 +103,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("Changing quantity in cart to negative should not update total price")
     public void changingQuantityNegativeAndPrice(){
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productWspinFerURLSlug)
                 .addToCart()
@@ -117,7 +117,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("Adding and increasing number of products should change product price")
     public void addingAndIncreasingChangeProductPrice() {
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productFuertaSlug)
                 .addToCart()
@@ -131,7 +131,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("Cart changed should update button enabled")
     public void cartChangedUupdateButtonEnabled(){
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(granKoscSlug)
                 .addToCart()
@@ -144,7 +144,7 @@ public class CartTests extends BaseTests{
     @Test
     @DisplayName("Cart not changed should update button disabled")
     public void cart_not_changed_should_update_button_disabled(){
-        ProductPage productPage = new ProductPage(driver);
+        ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(granKoscSlug)
                 .addToCart()

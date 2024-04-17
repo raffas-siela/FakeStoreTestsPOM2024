@@ -10,7 +10,7 @@ public class WishListTests extends BaseTests {
     @Test
     @DisplayName("Product added to wishlist should wishlist has one item")
     public void productToWishlist(){
-        ProductPage productPage = new ProductPage(driver)
+        ProductPage productPage = new ProductPage(browser)
                 .go(productWspinFerSlug);
         WishlistPage wishlistPage = productPage
                 .addToWishlist()
@@ -24,7 +24,7 @@ public class WishListTests extends BaseTests {
     @Test
     @DisplayName("No product added to wishlist should wishlist be empty")
     public void emptyWishlist(){
-        MainPage mainPage = new MainPage(driver);
+        MainPage mainPage = new MainPage(browser);
         WishlistPage wishlistPage = mainPage
                 .go()
                 .storeHeader

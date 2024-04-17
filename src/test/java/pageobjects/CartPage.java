@@ -1,6 +1,7 @@
 package pageobjects;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import helpers.Browser;
 
 
 public class CartPage extends BasePage {
@@ -12,8 +13,8 @@ public class CartPage extends BasePage {
     private final By emptyCartInfo = By.cssSelector(".entry-content .cart-empty");
 
     private  WebDriver driver;
-    public CartPage(WebDriver driver) {
-        super(driver);
+    public CartPage(Browser browser) {
+        super(browser);
     }
     public void go() {
         driver.get(baseURL + "/koszyk/");
