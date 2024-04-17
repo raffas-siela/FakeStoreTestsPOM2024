@@ -1,5 +1,4 @@
 package helpers;
-
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -10,6 +9,7 @@ public class ConfigurationReader {
     private String browser;
     private String baseURL;
     private String headless;
+
     public ConfigurationReader(){
         String configurationPath = "src/test/resources/configuration.properties";
         BufferedReader reader = null;
