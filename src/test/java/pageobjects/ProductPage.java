@@ -1,4 +1,5 @@
 package pageobjects;
+import helpers.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -7,9 +8,9 @@ public class ProductPage extends BasePage {
     private final By goToCart = By.cssSelector(".woocommerce-message>.button");
     private final By addToWishlist = By.cssSelector(".add_to_wishlist");
     public final StoreHeaderComponent storeHeader;
-    public ProductPage(WebDriver driver){
-        super(driver);
-        storeHeader = new StoreHeaderComponent(driver);
+    public ProductPage(Browser browser){
+        super(browser);
+        storeHeader = new StoreHeaderComponent(browser);
     }
     public ProductPage go(String productWspinFerURLSlug) {
         driver.get(baseURL + "/product/" + productWspinFerURLSlug);
@@ -23,7 +24,7 @@ public class ProductPage extends BasePage {
 
     public CartPage goToCart() {
         driver.findElement(goToCart).click();
-        return new CartPage(driver);
+        return new CartPage(browser);
     }
 
     public ProductPage addToWishlist() {

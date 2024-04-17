@@ -1,14 +1,14 @@
 package pageobjects;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import helpers.Browser;
 
 public class StoreHeaderComponent extends BasePage {
     private final By goToWishlistFromHeader = By.cssSelector("#menu-item-248");
-    protected StoreHeaderComponent(WebDriver driver) {
-        super(driver);
+    protected StoreHeaderComponent(Browser browser) {
+        super(browser);
     }
     public WishlistPage goToWishlist() {
         driver.findElement(goToWishlistFromHeader).click();
-        return new WishlistPage(driver);
+        return new WishlistPage(browser);
     }
 }
