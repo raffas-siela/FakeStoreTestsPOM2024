@@ -25,6 +25,6 @@ public class BaseTests {
     }
     @AfterEach
     public void quitDriver(){
-        browser.driver().quit();
+        browser.driver.quit();
     }
 }

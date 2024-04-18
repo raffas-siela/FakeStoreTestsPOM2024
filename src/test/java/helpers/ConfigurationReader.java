@@ -9,10 +9,11 @@ public class ConfigurationReader {
     private String browser;
     private String baseURL;
     private String headless;
+    private String waitInSeconds;
 
     public ConfigurationReader(){
         String configurationPath = "src/test/resources/configuration.properties";
-        BufferedReader reader = null;
+        BufferedReader reader;
         try {
             reader = new BufferedReader(new FileReader(configurationPath));
         } catch (FileNotFoundException e) {
@@ -29,6 +30,7 @@ public class ConfigurationReader {
         baseURL = properties.getProperty("baseURL");
         browser = properties.getProperty("browser");
         headless = properties.getProperty("headless");
+        waitInSeconds = properties.getProperty("waitInSeconds");
     }
     public String getBrowser(){
         if (!browser.isEmpty()) return browser;
@@ -41,5 +43,9 @@ public class ConfigurationReader {
     public String getBaseURL(){
         if (!baseURL.isEmpty()) return baseURL;
         else throw new RuntimeException("\"headless\" is not specified in the Configuration.properties file");
+    }
+    public int getWaitInSeconds(){
+        if (!waitInSeconds.isEmpty()) return Integer.parseInt(waitInSeconds);
+        else throw new RuntimeException("\"waitInSeconds\"is not specified in the Configuration.proprties file");
     }
 }

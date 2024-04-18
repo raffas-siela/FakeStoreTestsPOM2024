@@ -12,7 +12,7 @@ public class CartPage extends BasePage {
     private final By totalPrice = By.cssSelector(".cart-subtotal [data-title=Kwota]");
     private final By emptyCartInfo = By.cssSelector(".entry-content .cart-empty");
 
-    private  WebDriver driver;
+    //private  WebDriver driver;
     public CartPage(Browser browser) {
         super(browser);
     }

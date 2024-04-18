@@ -141,6 +141,7 @@ public class CartTests extends BaseTests{
         Assertions.assertTrue(cartPage.updateButtonIsEnabled(),
                 "Update button isn't enabled while it should. There are changes in cart");
     }
+
     @Test
     @DisplayName("Cart not changed should update button disabled")
     public void cart_not_changed_should_update_button_disabled(){
