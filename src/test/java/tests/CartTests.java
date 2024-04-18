@@ -7,7 +7,7 @@ public class CartTests extends BaseTests{
     private final String productWindSurURLSlug = "/fuerteventura-sotavento/";
     private final String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
     private final String productFuertaSlug = "fuerteventura-sotavento/";
-    private final String granKoscSlug = "gran-koscielcow/";
+    private final String productGranKoscSlug = "gran-koscielcow/";
 
     @Test
     @DisplayName("No product added to cart should cart be empty")
@@ -133,7 +133,7 @@ public class CartTests extends BaseTests{
     public void cartChangedUupdateButtonEnabled(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(granKoscSlug)
+                .go(productGranKoscSlug)
                 .addToCart()
                 .goToCart()
                 .changeQuantityWithoutRefresh(2);
@@ -147,7 +147,7 @@ public class CartTests extends BaseTests{
     public void cart_not_changed_should_update_button_disabled(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(granKoscSlug)
+                .go(productGranKoscSlug)
                 .addToCart()
                 .goToCart();
 

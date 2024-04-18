@@ -6,14 +6,17 @@ import pageobjects.WishlistPage;
 
 public class WishListTests extends BaseTests {
     private final String productWspinFerSlug = "/wspinaczka-via-ferraty/";
+    private final String productGranKoscSlug = "gran-koscielcow/";
 
     @Test
     @DisplayName("Product added to wishlist should wishlist has one item")
     public void productToWishlist(){
         ProductPage productPage = new ProductPage(browser)
-                .go(productWspinFerSlug);
-        WishlistPage wishlistPage = productPage
+                .go(productWspinFerSlug)
                 .addToWishlist()
+                .go(productGranKoscSlug)
+                .addToWishlist();
+        WishlistPage wishlistPage = productPage
                 .storeHeader
                 .goToWishlist();
 
