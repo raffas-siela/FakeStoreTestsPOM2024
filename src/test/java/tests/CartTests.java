@@ -20,7 +20,7 @@ public class CartTests extends BaseTests{
     }
 
     @Test
-    @DisplayName("Two product added to cart and deleted should displayed info about empty cart")
+    @DisplayName("Two products added to cart and deleted should displayed info about empty cart")
     public void emptyCartInfo(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
@@ -53,7 +53,7 @@ public class CartTests extends BaseTests{
     }
 
     @Test
-    @DisplayName("One product added to cart should cart have one products")
+    @DisplayName("One product added to cart should cart have one product")
     public void oneProductsCart(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
