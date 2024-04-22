@@ -9,10 +9,11 @@ public class WishListTests extends BaseTests {
     private final String productGranKoscSlug = "gran-koscielcow/";
 
     @Test
-    @DisplayName("Product added to wishlist should wishlist has one item")
+    @DisplayName("Products added to wishlist should wishlist has two items")
     public void productToWishlist(){
         ProductPage productPage = new ProductPage(browser)
                 .go(productWspinFerSlug)
+                .closeInfoButton()
                 .addToWishlist()
                 .go(productGranKoscSlug)
                 .addToWishlist();
@@ -20,7 +21,7 @@ public class WishListTests extends BaseTests {
                 .storeHeader
                 .goToWishlist();
 
-        Assertions.assertEquals(1, wishlistPage.getNumberOfProducts(),
+        Assertions.assertEquals(2, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected (1)");
     }
 
@@ -29,6 +30,7 @@ public class WishListTests extends BaseTests {
     public void emptyWishlist(){
         MainPage mainPage = new MainPage(browser);
         WishlistPage wishlistPage = mainPage
+
                 .go()
                 .storeHeader
                 .goToWishlist();

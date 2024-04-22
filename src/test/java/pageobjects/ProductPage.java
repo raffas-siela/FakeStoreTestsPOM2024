@@ -28,4 +28,10 @@ public class ProductPage extends BasePage {
         waitForLoadingIcons();
         return this;
     }
+
+
+    public ProductPage closeInfoButton() {
+        driver.findElement(By.className("woocommerce-store-notice__dismiss-link")).click();
+        return this;
+    }
 }

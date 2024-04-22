@@ -6,10 +6,12 @@ import helpers.NoSuchBrowserException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.By;
 
 public class BaseTests {
     protected Browser browser;
     private static ConfigurationReader configuration;
+
     @BeforeAll
     public static void loadConfiguration(){
         configuration = new ConfigurationReader();
@@ -23,6 +25,7 @@ public class BaseTests {
             throw new RuntimeException(e);
         }
     }
+
     @AfterEach
     public void quitDriver(){
         browser.driver.quit();
