@@ -65,4 +65,9 @@ public class CartPage extends BasePage {
         driver.findElement(quantityField).sendKeys(String.valueOf(quantity));
         return this;
     }
+
+    public OrderPage goToPayment() {
+        driver.findElement(By.cssSelector(".checkout-button")).click();
+        return new OrderPage(browser);
+    }
 }

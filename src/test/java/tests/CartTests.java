@@ -154,4 +154,7 @@ public class CartTests extends BaseTests{
         Assertions.assertFalse(cartPage.updateButtonIsEnabled(),
                 "Update button is enabled while it shouldn't. There are no changes in cart");
     }
+
+
+
 }
