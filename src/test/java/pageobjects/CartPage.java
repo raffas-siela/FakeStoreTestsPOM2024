@@ -32,14 +32,6 @@ public class CartPage extends BasePage {
         waitForLoadingIcons();
         return this;
     }
-    public CartPage increaseQuantityButton(int quantity) {
-        driver.findElement(quantityField).clear();
-        driver.findElement(quantityField).sendKeys(String.valueOf(quantity));
-        driver.findElement(updateCartButton).click();
-
-        waitForLoadingIcons();
-        return this;
-    }
 
     public String getTotalPrice() {
         return driver.findElement(totalPrice).getText();
@@ -64,10 +56,5 @@ public class CartPage extends BasePage {
         driver.findElement(quantityField).clear();
         driver.findElement(quantityField).sendKeys(String.valueOf(quantity));
         return this;
-    }
-
-    public OrderPage goToPayment() {
-        driver.findElement(By.cssSelector(".checkout-button")).click();
-        return new OrderPage(browser);
     }
 }

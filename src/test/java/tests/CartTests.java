@@ -1,4 +1,5 @@
 package tests;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.*;
 import pageobjects.CartPage;
 import pageobjects.ProductPage;
@@ -14,58 +15,22 @@ public class CartTests extends BaseTests{
     public void emptyCart(){
         CartPage cartpage = new CartPage(browser);
         cartpage.go();
+        int numberOfProducts = cartpage.getNumberOfProducts();
 
-        Assertions.assertEquals(0, cartpage.getNumberOfProducts(),
+        Assertions.assertEquals(0, numberOfProducts,
                 "Number of products in cart is not 0");
     }
 
     @Test
-    @DisplayName("Two products added to cart and deleted should displayed info about empty cart")
-    public void emptyCartInfo(){
+    @DisplayName("One product added to cart should cart has one product")
+    public void onlyOneProductCart(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWspinFerURLSlug)
-                .addToCart()
-                .go(productWindSurURLSlug)
-                .addToCart()
-                .goToCart()
-                .removeFromCart()
-                .removeFromCart();
-
-        Assertions.assertEquals("Twój koszyk jest pusty.", cartPage.getInfoEmpty(),
-                "The cart is not empty");
-    }
-
-    @Test
-    @DisplayName("Product added to cart should cart have one product")
-    public void oneProductCart(){
-        ProductPage productPage = new ProductPage(browser);
-        CartPage cartPage = productPage
-                .go(productWindSurURLSlug)
+                .go(productFuertaSlug)
                 .addToCart()
                 .goToCart();
-
-        int numberOfProducts= cartPage.getNumberOfProducts();
-
-        Assertions.assertEquals(1, numberOfProducts,
-                "Expected number of products in cart: 1" +
-                "\n Actual number of products: " + numberOfProducts);
-    }
-
-    @Test
-    @DisplayName("One product added to cart should cart have one product")
-    public void oneProductsCart(){
-        ProductPage productPage = new ProductPage(browser);
-        CartPage cartPage = productPage
-                .go(productWspinFerURLSlug)
-                .addToCart()
-                .goToCart();
-
         int numberOfProducts = cartPage.getNumberOfProducts();
-
-        Assertions.assertEquals(1, numberOfProducts,
-                "Expected number of products in cart: 2" +
-                "\n Actual number of products: " + numberOfProducts);
+        Assertions.assertEquals(1, numberOfProducts, "Number of produts in cart is not expected");
     }
 
     @Test
@@ -87,6 +52,42 @@ public class CartTests extends BaseTests{
     }
 
     @Test
+    @DisplayName("Two products added to cart and deleted should displayed info about empty cart")
+    public void emptyCartInfo(){
+        ProductPage productPage = new ProductPage(browser);
+        CartPage cartPage = productPage
+                .go(productWspinFerURLSlug)
+                .addToCart()
+                .go(productWindSurURLSlug)
+                .addToCart()
+                .goToCart()
+                .removeFromCart()
+                .removeFromCart();
+
+        Assertions.assertEquals("Twój koszyk jest pusty.", cartPage.getInfoEmpty(),
+                "The cart is not empty");
+    }
+
+    @Test
+    @DisplayName("Three products added to cart should cart has 3 products")
+    public void threeProductsCart(){
+        ProductPage productPage = new ProductPage(browser);
+        CartPage cartPage = productPage
+                .go(productWindSurURLSlug)
+                .addToCart()
+                .go(productGranKoscSlug)
+                .addToCart()
+                .go(productWspinFerURLSlug)
+                .addToCart()
+                .goToCart();
+        int numberOfProducts = cartPage.getNumberOfProducts();
+        Assertions.assertEquals(3, numberOfProducts,
+                "Number of products in cart IS NOT expected."+
+                        "\n Expected number = 3"+
+                        "\n actual number: " + numberOfProducts);
+    }
+
+    @Test
     @DisplayName("Changing quantity in cart should change total price")
     public void changingQuantityAndPrice(){
         ProductPage productPage = new ProductPage(browser);
@@ -99,7 +100,6 @@ public class CartTests extends BaseTests{
         Assertions.assertEquals("5 598,00 zł", cartPage.getTotalPrice(),
                 "Total price after quantity update is not what we expected");
     }
-
     @Test
     @DisplayName("Changing quantity in cart to negative should not update total price")
     public void changingQuantityNegativeAndPrice(){
@@ -113,7 +113,6 @@ public class CartTests extends BaseTests{
         Assertions.assertEquals("2 799,00 zł", cartPage.getTotalPrice(),
                 "total price was changed. It isn't what is expected");
     }
-
     @Test
     @DisplayName("Adding and increasing number of products should change product price")
     public void addingAndIncreasingChangeProductPrice() {
@@ -127,7 +126,6 @@ public class CartTests extends BaseTests{
         Assertions.assertEquals("7 200,00 zł", cartPage.getTotalPrice(),
                 "Total price is not correct");
     }
-
     @Test
     @DisplayName("Cart changed should update button enabled")
     public void cartChangedUupdateButtonEnabled(){
@@ -141,7 +139,6 @@ public class CartTests extends BaseTests{
         Assertions.assertTrue(cartPage.updateButtonIsEnabled(),
                 "Update button isn't enabled while it should. There are changes in cart");
     }
-
     @Test
     @DisplayName("Cart not changed should update button disabled")
     public void cart_not_changed_should_update_button_disabled(){
@@ -154,7 +151,4 @@ public class CartTests extends BaseTests{
         Assertions.assertFalse(cartPage.updateButtonIsEnabled(),
                 "Update button is enabled while it shouldn't. There are no changes in cart");
     }
-
-
-
 }
