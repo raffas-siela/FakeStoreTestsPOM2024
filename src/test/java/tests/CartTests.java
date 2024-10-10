@@ -1,5 +1,4 @@
 package tests;
-import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.*;
 import pageobjects.CartPage;
 import pageobjects.ProductPage;
