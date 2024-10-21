@@ -1,6 +1,7 @@
 package tests;
 import org.junit.jupiter.api.*;
 import pageobjects.CartPage;
+import pageobjects.PaymentPage;
 import pageobjects.ProductPage;
 
 public class CartTests extends BaseTests{
@@ -99,6 +100,7 @@ public class CartTests extends BaseTests{
         Assertions.assertEquals("5 598,00 zł", cartPage.getTotalPrice(),
                 "Total price after quantity update is not what we expected");
     }
+
     @Test
     @DisplayName("Changing quantity in cart to negative should not update total price")
     public void changingQuantityNegativeAndPrice(){
@@ -112,6 +114,7 @@ public class CartTests extends BaseTests{
         Assertions.assertEquals("2 799,00 zł", cartPage.getTotalPrice(),
                 "total price was changed. It isn't what is expected");
     }
+
     @Test
     @DisplayName("Adding and increasing number of products should change product price")
     public void addingAndIncreasingChangeProductPrice() {
@@ -125,6 +128,7 @@ public class CartTests extends BaseTests{
         Assertions.assertEquals("7 200,00 zł", cartPage.getTotalPrice(),
                 "Total price is not correct");
     }
+
     @Test
     @DisplayName("Cart changed should update button enabled")
     public void cartChangedUupdateButtonEnabled(){
@@ -138,6 +142,7 @@ public class CartTests extends BaseTests{
         Assertions.assertTrue(cartPage.updateButtonIsEnabled(),
                 "Update button isn't enabled while it should. There are changes in cart");
     }
+
     @Test
     @DisplayName("Cart not changed should update button disabled")
     public void cart_not_changed_should_update_button_disabled(){
@@ -149,5 +154,42 @@ public class CartTests extends BaseTests{
 
         Assertions.assertFalse(cartPage.updateButtonIsEnabled(),
                 "Update button is enabled while it shouldn't. There are no changes in cart");
+    }
+
+    @Test
+    @DisplayName("Adding product and go to payment checking by content")
+    public void add_to_cart_and_pay_cont(){
+        ProductPage productPage = new ProductPage(browser);
+        CartPage cartPage = productPage
+                .go(productWindSurURLSlug)
+                .closeInfoButton()
+                .addToCart()
+                .go(productGranKoscSlug)
+                .addToCart()
+                .go(productWspinFerURLSlug)
+                .addToCart()
+                .goToCart();
+        PaymentPage paymentPage = cartPage
+                .goToPayment();
+        Assertions.assertDoesNotThrow(() -> paymentPage.isOnPaymentPage(),
+                "User is not on the 'Zamówienie' page");
+    }
+
+    @Test
+    @DisplayName("Adding product and go to payment checking by URL")
+    public void add_to_cart_and_pay_url(){
+        ProductPage productPage = new ProductPage(browser);
+        CartPage cartPage = productPage
+                .go(productWspinFerURLSlug)
+                .closeInfoButton()
+                .addToCart()
+                .goToCart();
+        PaymentPage paymentPage = cartPage
+                .goToPayment();
+
+        Assertions.assertEquals(paymentPage.currentUrl, "https://fakestore.testelka.pl/zamowienie/",
+                "URL address of this page is not what expected");
+
+
     }
 }

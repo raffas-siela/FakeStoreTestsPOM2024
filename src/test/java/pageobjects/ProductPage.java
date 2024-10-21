@@ -6,6 +6,7 @@ public class ProductPage extends BasePage {
     private final By addToCart = By.cssSelector("[name=add-to-cart]");
     private final By goToCart = By.cssSelector(".woocommerce-message>.button");
     private final By addToWishlist = By.cssSelector(".add_to_wishlist");
+    private final By goToWishlistFromHeader = By.cssSelector(".menu-item-248");
     public final StoreHeaderComponent storeHeader;
     public ProductPage(Browser browser){
         super(browser);
@@ -23,13 +24,19 @@ public class ProductPage extends BasePage {
         driver.findElement(goToCart).click();
         return new CartPage(browser);
     }
+    public ProductPage closeInfoButton() {
+        driver.findElement(By.className("woocommerce-store-notice__dismiss-link")).click();
+        return this;
+    }
+
     public ProductPage addToWishlist() {
         driver.findElement(addToWishlist).click();
         waitForLoadingIcons();
         return this;
     }
-    public ProductPage closeInfoButton() {
-        driver.findElement(By.className("woocommerce-store-notice__dismiss-link")).click();
-        return this;
+
+    public WishlistPage goToWishlist() {
+        driver.findElement(goToWishlistFromHeader).click();
+        return new WishlistPage(browser);
     }
 }
