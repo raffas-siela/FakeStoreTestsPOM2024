@@ -1,5 +1,8 @@
 package tests;
-import org.junit.jupiter.api.*;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import pageobjects.CartPage;
 import pageobjects.PaymentPage;
 import pageobjects.ProductPage;
@@ -187,9 +190,8 @@ public class CartTests extends BaseTests{
         PaymentPage paymentPage = cartPage
                 .goToPayment();
 
-        Assertions.assertEquals(paymentPage.currentUrl, "https://fakestore.testelka.pl/zamowienie/",
+        Assertions.assertEquals(paymentPage.currentUrl, browser.baseURL + "zamowienie/",
                 "URL address of this page is not what expected");
-
-
     }
+
 }

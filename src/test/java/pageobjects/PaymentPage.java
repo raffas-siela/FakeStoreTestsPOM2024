@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 public class PaymentPage extends BasePage {
     public String currentUrl = driver.getCurrentUrl();
 
+
     protected PaymentPage(Browser browser) {
         super(browser);
     }
