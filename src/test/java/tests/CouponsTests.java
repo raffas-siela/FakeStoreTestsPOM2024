@@ -82,13 +82,13 @@ public class CouponsTests extends BaseTests{
                 .closeInfoButton()
                 .addToCart()
                 .goToCart();
-        // Pobranie ceny przed zastosowaniem kuponu
+        // Pobranie ceny przed kuponem
         double originalPrice = parsePrice(cartPage.getTotalPrice());
         // Zastosowanie kuponu
         cartPage.applyCoupon(coupon);
-        // Pobranie ceny po zastosowaniu kuponu
+        // Pobranie ceny po kuponie
         double discountedPrice = parsePrice(cartPage.getTotalPriceCoupon());
-        // Obliczenie oczekiwanej ceny po rabacie
+        // cena po rabacie
         double expectedPrice = originalPrice * (1 - couponValue);
         // Porównanie oczekiwanej ceny z rzeczywistą ceną po rabacie
         Assertions.assertEquals(expectedPrice, discountedPrice, 0.01, "Discounted price is not as expected.");
