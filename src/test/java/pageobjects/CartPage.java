@@ -8,6 +8,7 @@ public class CartPage extends BasePage {
     private final By quantityField = By.cssSelector("input.qty");
     private final By updateCartButton = By.cssSelector("[name=update_cart]");
     private final By totalPrice = By.cssSelector(".cart-subtotal [data-title=Kwota]");
+    private final By totalPriceCoupon = By.cssSelector(".order-total .woocommerce-Price-amount");
     private final By emptyCartInfo = By.cssSelector(".entry-content .cart-empty");
     private final By paymentButton = By.linkText("Przejdź do płatności");
     private final By couponField = By.id("coupon_code");
@@ -64,4 +65,7 @@ public class CartPage extends BasePage {
         return driver.findElement(successMessage).getText();
     }
 
+    public String getTotalPriceCoupon() {
+        return driver.findElement(totalPriceCoupon).getText();
+    }
 }

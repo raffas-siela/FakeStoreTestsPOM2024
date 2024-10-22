@@ -7,7 +7,9 @@ public class ProductPage extends BasePage {
     private final By goToCart = By.cssSelector(".woocommerce-message>.button");
     private final By addToWishlist = By.cssSelector(".add_to_wishlist");
     private final By goToWishlistFromHeader = By.cssSelector(".menu-item-248");
+
     public final StoreHeaderComponent storeHeader;
+
     public ProductPage(Browser browser){
         super(browser);
         storeHeader = new StoreHeaderComponent(browser);

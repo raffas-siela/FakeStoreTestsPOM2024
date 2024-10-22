@@ -11,6 +11,11 @@ public class CouponsTests extends BaseTests{
     private final String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
     private final String productFuertaSlug = "fuerteventura-sotavento/";
     private final String productGranKoscSlug = "gran-koscielcow/";
+    private double parsePrice(String price) {
+        // Usunięcie spacji, symbolu waluty i zamiana przecinka na kropkę
+        String cleanedPrice = price.replace(" ", "").replace("zł", "").replace(",", ".");
+        return Double.parseDouble(cleanedPrice);
+    }
     @Test
     @DisplayName("Using coupon - inactive")
     public void using_coupon_inactive(){
@@ -51,7 +56,7 @@ public class CouponsTests extends BaseTests{
                 .goToCart()
                 .applyCoupon(coupon)
                 .applyCoupon(coupon);
-        Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon został zastosowany!", "ddd");
+        Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon został zastosowany!", "Coupon message is not ok");
     }
     @Test
     @DisplayName("Using coupon - not exist")
@@ -63,7 +68,29 @@ public class CouponsTests extends BaseTests{
                 .addToCart()
                 .goToCart()
                 .applyCoupon(coupon);
-        Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon " + '"'+coupon+'"' + " nie istnieje!", " ...");
-
+        Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon " + '"'+coupon+'"' + " nie istnieje!",
+                "Coupon message is not ok");
+    }
+    @Test
+    @DisplayName("Using coupon 10% - Calculating value of promotion")
+    public void coupon_10_value(){
+        String coupon = "10procent";
+        double couponValue = 0.10;
+        ProductPage productPage = new ProductPage(browser);
+        CartPage cartPage = productPage
+                .go(productGranKoscSlug)
+                .closeInfoButton()
+                .addToCart()
+                .goToCart();
+        // Pobranie ceny przed zastosowaniem kuponu
+        double originalPrice = parsePrice(cartPage.getTotalPrice());
+        // Zastosowanie kuponu
+        cartPage.applyCoupon(coupon);
+        // Pobranie ceny po zastosowaniu kuponu
+        double discountedPrice = parsePrice(cartPage.getTotalPriceCoupon());
+        // Obliczenie oczekiwanej ceny po rabacie
+        double expectedPrice = originalPrice * (1 - couponValue);
+        // Porównanie oczekiwanej ceny z rzeczywistą ceną po rabacie
+        Assertions.assertEquals(expectedPrice, discountedPrice, 0.01, "Discounted price is not as expected.");
     }
 }
