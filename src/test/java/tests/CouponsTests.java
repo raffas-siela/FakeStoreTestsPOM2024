@@ -7,12 +7,6 @@ import pageobjects.CartPage;
 import pageobjects.ProductPage;
 
 public class CouponsTests extends BaseTests{
-    private double parsePrice(String price) {
-        // Usunięcie spacji, symbolu waluty i zamiana przecinka na kropkę
-        String cleanedPrice = price.replace(" ", "").replace("zł", "").replace(",", ".");
-        return Double.parseDouble(cleanedPrice);
-    }
-
     @Test
     @DisplayName("Using coupon - inactive")
     public void using_coupon_inactive(){
