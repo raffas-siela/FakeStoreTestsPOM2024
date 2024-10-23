@@ -6,21 +6,10 @@ import helpers.NoSuchBrowserException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import pageobjects.CartPage;
-import pageobjects.ProductPage;
 
 public class BaseTests {
     protected Browser browser;
     private static ConfigurationReader configuration;
-
-    public CartPage addProductToCard (String productUrl){
-        ProductPage productPage = new ProductPage(browser);
-        return productPage
-                .go(productUrl)
-                .closeInfoButton()
-                .addToCart()
-                .goToCart();
-    }
 
     @BeforeAll
     public static void loadConfiguration(){
@@ -35,7 +24,6 @@ public class BaseTests {
             throw new RuntimeException(e);
         }
     }
-
     @AfterEach
     public void quitDriver(){
         browser.driver.quit();
