@@ -3,14 +3,16 @@ package tests;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import pageobjects.CartPage;
 import pageobjects.PaymentPage;
 import pageobjects.ProductPage;
 
-public class CartTests extends BaseTests{
+public class CartTests extends BaseTests {
     @Test
     @DisplayName("No product added to cart should cart be empty")
-    public void emptyCart(){
+    public void emptyCart() {
         CartPage cartpage = new CartPage(browser);
         cartpage.go();
         int numberOfProducts = cartpage.getNumberOfProducts();
@@ -21,7 +23,7 @@ public class CartTests extends BaseTests{
 
     @Test
     @DisplayName("One product added to cart should cart has one product")
-    public void onlyOneProductCart(){
+    public void onlyOneProductCart() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product01WindSurf)
@@ -33,7 +35,7 @@ public class CartTests extends BaseTests{
 
     @Test
     @DisplayName("Two products added to cart should cart have two products")
-    public void twoProductsCart(){
+    public void twoProductsCart() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product02WindEgipt)
@@ -46,12 +48,12 @@ public class CartTests extends BaseTests{
 
         Assertions.assertEquals(2, numberOfProducts,
                 "Expected number of products in cart: 2" +
-                "\n Actual number of products: " + numberOfProducts);
+                        "\n Actual number of products: " + numberOfProducts);
     }
 
     @Test
     @DisplayName("Two products added to cart and deleted should displayed info about empty cart")
-    public void emptyCartInfo(){
+    public void emptyCartInfo() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product04WindKarpathos)
@@ -68,7 +70,7 @@ public class CartTests extends BaseTests{
 
     @Test
     @DisplayName("Three products added to cart should cart has 3 products")
-    public void threeProductsCart(){
+    public void threeProductsCart() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product06WindZiel)
@@ -80,14 +82,14 @@ public class CartTests extends BaseTests{
                 .goToCart();
         int numberOfProducts = cartPage.getNumberOfProducts();
         Assertions.assertEquals(3, numberOfProducts,
-                "Number of products in cart IS NOT expected."+
-                        "\n Expected number = 3"+
+                "Number of products in cart IS NOT expected." +
+                        "\n Expected number = 3" +
                         "\n actual number: " + numberOfProducts);
     }
 
     @Test
     @DisplayName("Changing quantity in cart should change total price")
-    public void changingQuantityAndPrice(){
+    public void changingQuantityAndPrice() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product09WspinPeak)
@@ -101,7 +103,7 @@ public class CartTests extends BaseTests{
 
     @Test
     @DisplayName("Changing quantity in cart to negative should not update total price")
-    public void changingQuantityNegativeAndPrice(){
+    public void changingQuantityNegativeAndPrice() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product10YogaWis)
@@ -130,7 +132,7 @@ public class CartTests extends BaseTests{
 
     @Test
     @DisplayName("Cart changed should update button enabled")
-    public void cartChangedUupdateButtonEnabled(){
+    public void cartChangedUupdateButtonEnabled() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product12YogaHis)
@@ -144,7 +146,7 @@ public class CartTests extends BaseTests{
 
     @Test
     @DisplayName("Cart not changed should update button disabled")
-    public void cart_not_changed_should_update_button_disabled(){
+    public void cart_not_changed_should_update_button_disabled() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product13YogaPort)
@@ -157,7 +159,7 @@ public class CartTests extends BaseTests{
 
     @Test
     @DisplayName("Adding product and go to payment checking by content")
-    public void add_to_cart_and_pay_cont(){
+    public void add_to_cart_and_pay_cont() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product14YogaMal)
@@ -176,7 +178,7 @@ public class CartTests extends BaseTests{
 
     @Test
     @DisplayName("Adding product and go to payment checking by URL")
-    public void add_to_cart_and_pay_url(){
+    public void add_to_cart_and_pay_url() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product07WspinFer)
@@ -189,4 +191,8 @@ public class CartTests extends BaseTests{
         Assertions.assertEquals(paymentPage.currentUrl, browser.baseURL + "zamowienie/",
                 "URL address of this page is not what expected");
     }
-    }
+
+
+
+
+}
