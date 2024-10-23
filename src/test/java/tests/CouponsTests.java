@@ -31,7 +31,6 @@ public class CouponsTests extends BaseTests{
         Assertions.assertEquals(cartPage.getSuccessMessage(), "Ten kupon stracił ważność.",
                 "Coupon message is not ok");
     }
-
     @Test
     @DisplayName("Using coupon - active 250 no limit/once")
     public void using_coupon_active_once(){
