@@ -7,22 +7,19 @@ import pageobjects.CartPage;
 import pageobjects.ProductPage;
 
 public class CouponsTests extends BaseTests{
-    private final String productWindSurURLSlug = "/fuerteventura-sotavento/";
-    private final String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
-    private final String productFuertaSlug = "fuerteventura-sotavento/";
-    private final String productGranKoscSlug = "gran-koscielcow/";
     private double parsePrice(String price) {
         // Usunięcie spacji, symbolu waluty i zamiana przecinka na kropkę
         String cleanedPrice = price.replace(" ", "").replace("zł", "").replace(",", ".");
         return Double.parseDouble(cleanedPrice);
     }
+
     @Test
     @DisplayName("Using coupon - inactive")
     public void using_coupon_inactive(){
         String coupon = "starośćnieradość";
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWspinFerURLSlug)
+                .go(productPage.product07WspinFer)
                 .closeInfoButton()
                 .addToCart()
                 .goToCart()
@@ -37,7 +34,7 @@ public class CouponsTests extends BaseTests{
         String coupon = "kwotowy250";
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productFuertaSlug)
+                .go(productPage.product01WindSurf)
                 .addToCart()
                 .goToCart()
                 .applyCoupon(coupon);
@@ -49,7 +46,7 @@ public class CouponsTests extends BaseTests{
         String coupon = "kwotowy250";
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productGranKoscSlug)
+                .go(productPage.product08WspinKosc)
                 .closeInfoButton()
                 .addToCart()
                 .goToCart()
@@ -63,21 +60,21 @@ public class CouponsTests extends BaseTests{
         String coupon = "wrong";
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productGranKoscSlug)
+                .go(productPage.product08WspinKosc)
                 .addToCart()
                 .goToCart()
                 .applyCoupon(coupon);
         Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon " + '"'+coupon+'"' + " nie istnieje!",
-                "Coupon message is not ok");
+                "Coupon message is not what expected");
     }
     @Test
-    @DisplayName("Using coupon 10% - Calculating value of promotion")
+    @DisplayName("Using coupon - 10% - Calculating value of promotion")
     public void coupon_10_value(){
         String coupon = "10procent";
         double couponValue = 0.10;
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productGranKoscSlug)
+                .go(productPage.product08WspinKosc)
                 .closeInfoButton()
                 .addToCart()
                 .goToCart();
@@ -91,5 +88,35 @@ public class CouponsTests extends BaseTests{
         double expectedPrice = originalPrice * (1 - couponValue);
         // Porównanie oczekiwanej ceny z rzeczywistą ceną po rabacie
         Assertions.assertEquals(expectedPrice, discountedPrice, 0.01, "Discounted price is not as expected.");
+    }
+
+    @Test
+    @DisplayName("Using coupon - positive - for cart value above 3 thousands")
+    public void using_coupon_three_thousands_positive(){
+        String coupon = "kwotowy300";
+        ProductPage productPage = new ProductPage(browser);
+        CartPage cartPage = productPage
+                .go(productPage.product01WindSurf)
+                .closeInfoButton()
+                .addToCart()
+                .goToCart()
+                .applyCoupon(coupon);
+        Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon został pomyślnie użyty.",
+                "Coupon message is not what expected");
+    }
+    @Test
+    @DisplayName("Using coupon - negative - for cart value above 3 thousands")
+    public void using_coupon_three_thousands_negative(){
+        String coupon = "kwotowy300";
+        ProductPage productPage = new ProductPage(browser);
+        CartPage cartPage = productPage
+                .go(productPage.product08WspinKosc)
+                .closeInfoButton()
+                .addToCart()
+                .goToCart()
+                .applyCoupon(coupon);
+        Assertions.assertEquals(cartPage.getSuccessMessage(),
+                "Minimalna wartość zamówienia dla tego kuponu to 3 000,00 zł.",
+                "Coupon message is not what expected");
     }
 }

@@ -14,6 +14,7 @@ public class CartPage extends BasePage {
     private final By couponField = By.id("coupon_code");
     private final By applyCouponButton = By.name("apply_coupon");
     private final By successMessage = By.cssSelector(".woocommerce .woocommerce-notices-wrapper");
+    private final By oneProductPrice = By.cssSelector(".woocommerce-cart-form__cart-item .woocommerce-Price-amount");
 
     public CartPage(Browser browser) {
         super(browser);

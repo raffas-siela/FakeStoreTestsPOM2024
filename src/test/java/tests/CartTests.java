@@ -8,11 +8,6 @@ import pageobjects.PaymentPage;
 import pageobjects.ProductPage;
 
 public class CartTests extends BaseTests{
-    private final String productWindSurURLSlug = "/fuerteventura-sotavento/";
-    private final String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
-    private final String productFuertaSlug = "fuerteventura-sotavento/";
-    private final String productGranKoscSlug = "gran-koscielcow/";
-
     @Test
     @DisplayName("No product added to cart should cart be empty")
     public void emptyCart(){
@@ -29,7 +24,7 @@ public class CartTests extends BaseTests{
     public void onlyOneProductCart(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productFuertaSlug)
+                .go(productPage.product01WindSurf)
                 .addToCart()
                 .goToCart();
         int numberOfProducts = cartPage.getNumberOfProducts();
@@ -41,9 +36,9 @@ public class CartTests extends BaseTests{
     public void twoProductsCart(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWindSurURLSlug)
+                .go(productPage.product02WindEgipt)
                 .addToCart()
-                .go(productWspinFerURLSlug)
+                .go(productPage.product03WindGrecja)
                 .addToCart()
                 .goToCart();
 
@@ -59,9 +54,9 @@ public class CartTests extends BaseTests{
     public void emptyCartInfo(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWspinFerURLSlug)
+                .go(productPage.product04WindKarpathos)
                 .addToCart()
-                .go(productWindSurURLSlug)
+                .go(productPage.product05WindLanzarote)
                 .addToCart()
                 .goToCart()
                 .removeFromCart()
@@ -76,11 +71,11 @@ public class CartTests extends BaseTests{
     public void threeProductsCart(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWindSurURLSlug)
+                .go(productPage.product06WindZiel)
                 .addToCart()
-                .go(productGranKoscSlug)
+                .go(productPage.product07WspinFer)
                 .addToCart()
-                .go(productWspinFerURLSlug)
+                .go(productPage.product08WspinKosc)
                 .addToCart()
                 .goToCart();
         int numberOfProducts = cartPage.getNumberOfProducts();
@@ -95,12 +90,12 @@ public class CartTests extends BaseTests{
     public void changingQuantityAndPrice(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWspinFerURLSlug)
+                .go(productPage.product09WspinPeak)
                 .addToCart()
                 .goToCart()
                 .changeQuantity(2);
 
-        Assertions.assertEquals("5 598,00 zł", cartPage.getTotalPrice(),
+        Assertions.assertEquals("16 400,00 zł", cartPage.getTotalPrice(),
                 "Total price after quantity update is not what we expected");
     }
 
@@ -109,12 +104,13 @@ public class CartTests extends BaseTests{
     public void changingQuantityNegativeAndPrice(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWspinFerURLSlug)
+                .go(productPage.product10YogaWis)
+                .closeInfoButton()
                 .addToCart()
                 .goToCart()
                 .changeQuantity(-3);
 
-        Assertions.assertEquals("2 799,00 zł", cartPage.getTotalPrice(),
+        Assertions.assertEquals("4 299,00 zł", cartPage.getTotalPrice(),
                 "total price was changed. It isn't what is expected");
     }
 
@@ -123,12 +119,12 @@ public class CartTests extends BaseTests{
     public void addingAndIncreasingChangeProductPrice() {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productFuertaSlug)
+                .go(productPage.product11YogaTos)
                 .addToCart()
                 .goToCart()
                 .changeQuantity(2);
 
-        Assertions.assertEquals("7 200,00 zł", cartPage.getTotalPrice(),
+        Assertions.assertEquals("9 000,00 zł", cartPage.getTotalPrice(),
                 "Total price is not correct");
     }
 
@@ -137,7 +133,7 @@ public class CartTests extends BaseTests{
     public void cartChangedUupdateButtonEnabled(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productGranKoscSlug)
+                .go(productPage.product12YogaHis)
                 .addToCart()
                 .goToCart()
                 .changeQuantityWithoutRefresh(2);
@@ -151,7 +147,7 @@ public class CartTests extends BaseTests{
     public void cart_not_changed_should_update_button_disabled(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productGranKoscSlug)
+                .go(productPage.product13YogaPort)
                 .addToCart()
                 .goToCart();
 
@@ -164,12 +160,12 @@ public class CartTests extends BaseTests{
     public void add_to_cart_and_pay_cont(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWindSurURLSlug)
+                .go(productPage.product14YogaMal)
                 .closeInfoButton()
                 .addToCart()
-                .go(productGranKoscSlug)
+                .go(productPage.product15ZeglKurs)
                 .addToCart()
-                .go(productWspinFerURLSlug)
+                .go(productPage.product13YogaPort)
                 .addToCart()
                 .goToCart();
         PaymentPage paymentPage = cartPage
@@ -183,7 +179,7 @@ public class CartTests extends BaseTests{
     public void add_to_cart_and_pay_url(){
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
-                .go(productWspinFerURLSlug)
+                .go(productPage.product07WspinFer)
                 .closeInfoButton()
                 .addToCart()
                 .goToCart();
@@ -193,5 +189,4 @@ public class CartTests extends BaseTests{
         Assertions.assertEquals(paymentPage.currentUrl, browser.baseURL + "zamowienie/",
                 "URL address of this page is not what expected");
     }
-
-}
+    }
