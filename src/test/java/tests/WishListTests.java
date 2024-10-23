@@ -5,10 +5,6 @@ import pageobjects.ProductPage;
 import pageobjects.WishlistPage;
 
 public class WishListTests extends BaseTests {
-    private final String productGranKoscSlug = "gran-koscielcow/";
-    private final String productWindSurURLSlug = "/fuerteventura-sotavento/";
-    private final String productWspinFerURLSlug = "/wspinaczka-via-ferraty/";
-    private final String productFuertaSlug = "fuerteventura-sotavento/";
 
     @Test
     @DisplayName("No products added to wishlist should have no intem")
@@ -25,26 +21,26 @@ public class WishListTests extends BaseTests {
     @Test
     @DisplayName("One product added to wishlist should have one item")
     public void one_produckt_added_one_item(){
-        ProductPage productPage = new ProductPage(browser)
-                .go(productGranKoscSlug);
-                WishlistPage wishlistPage = productPage
-                        .closeInfoButton()
-                        .addToWishlist()
-                        .goToWishlist();
-                Assertions.assertEquals(1, wishlistPage.getNumberOfProducts(),
+        ProductPage productPage = new ProductPage(browser);
+        WishlistPage wishlistPage = productPage
+                .go(productPage.product01WindSurf)
+                .closeInfoButton()
+                .addToWishlist()
+                .goToWishlist();
+        Assertions.assertEquals(1, wishlistPage.getNumberOfProducts(),
                         "Number of products in wishlist is not what expected.");
     }
 
     @Test
     @DisplayName("Two products added to wishlist should have two items")
     public void two_products_added_two_items(){
-        ProductPage productPage = new ProductPage(browser)
-                .go(productGranKoscSlug)
+        ProductPage productPage = new ProductPage(browser);
+        WishlistPage wishlistPage = productPage
+                .go(productPage.product08WspinKosc)
                 .closeInfoButton()
                 .addToWishlist()
-                .go(productWspinFerURLSlug)
-                .addToWishlist();
-        WishlistPage wishlistPage = productPage
+                .go(productPage.product07WspinFer)
+                .addToWishlist()
                 .goToWishlist();
 
         Assertions.assertEquals(2, wishlistPage.getNumberOfProducts(),
@@ -54,15 +50,15 @@ public class WishListTests extends BaseTests {
     @Test
     @DisplayName("Three products added to wishlist should have three items")
     public void three_produckts_added_to_wishlist_should_have_three_items(){
-        ProductPage productPage = new ProductPage(browser)
-                .go(productGranKoscSlug)
+        ProductPage productPage = new ProductPage(browser);
+        WishlistPage wishlistPage = productPage
+                .go(productPage.product08WspinKosc)
                 .closeInfoButton()
                 .addToWishlist()
-                .go(productWspinFerURLSlug)
+                .go(productPage.product07WspinFer)
                 .addToWishlist()
-                .go(productFuertaSlug)
-                .addToWishlist();
-        WishlistPage wishlistPage = productPage
+                .go(productPage.product01WindSurf)
+                .addToWishlist()
                 .goToWishlist();
 
         Assertions.assertEquals(3, wishlistPage.getNumberOfProducts(),
@@ -72,15 +68,15 @@ public class WishListTests extends BaseTests {
     @Test
     @DisplayName("Three products added to wishlist and one is removed should have two items")
     public void three_products_added_one_is_removed(){
-        ProductPage productPage = new ProductPage(browser)
-                .go(productGranKoscSlug)
+        ProductPage productPage = new ProductPage(browser);
+        WishlistPage wishlistPage = productPage
+                .go(productPage.product08WspinKosc)
                 .closeInfoButton()
                 .addToWishlist()
-                .go(productWspinFerURLSlug)
+                .go(productPage.product07WspinFer)
                 .addToWishlist()
-                .go(productFuertaSlug)
-                .addToWishlist();
-         WishlistPage wishlistPage = productPage
+                .go(productPage.product01WindSurf)
+                .addToWishlist()
                 .goToWishlist();
         Assertions.assertTrue(wishlistPage.getNumberOfProducts() > 0, "Wishlist is empty before removing a product.");
         wishlistPage.removeProduct(0);
