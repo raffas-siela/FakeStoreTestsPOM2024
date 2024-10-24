@@ -14,7 +14,6 @@ public class CouponsTests extends BaseTests{
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product07WspinFer)
-                .closeInfoButton()
                 .addToCart()
                 .goToCart()
                 .applyCoupon(coupon);
@@ -41,7 +40,6 @@ public class CouponsTests extends BaseTests{
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product08WspinKosc)
-                .closeInfoButton()
                 .addToCart()
                 .goToCart()
                 .applyCoupon(coupon)
@@ -69,7 +67,6 @@ public class CouponsTests extends BaseTests{
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product08WspinKosc)
-                .closeInfoButton()
                 .addToCart()
                 .goToCart();
         // Pobranie ceny przed kuponem
@@ -91,7 +88,6 @@ public class CouponsTests extends BaseTests{
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product01WindSurf)
-                .closeInfoButton()
                 .addToCart()
                 .goToCart()
                 .applyCoupon(coupon);
@@ -105,7 +101,6 @@ public class CouponsTests extends BaseTests{
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product08WspinKosc)
-                .closeInfoButton()
                 .addToCart()
                 .goToCart()
                 .applyCoupon(coupon);
