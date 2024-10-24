@@ -21,14 +21,11 @@ public class ProductPage extends BasePage {
     public final String product15ZeglKurs = "/kurs-zeglarski-na-mazurach/";
 
     //---elements---
-    // button in Card "Dodaj do koszyka"
     private final By addToCart = By.className("single_add_to_cart_button");
     private final By goToCart = By.cssSelector(".woocommerce-message>.button");
     private final By addToWishlist = By.cssSelector(".add_to_wishlist");
     private final By goToWishlistFromHeader = By.cssSelector(".menu-item-248");
-
     public final StoreHeaderComponent storeHeader;
-
     public ProductPage(Browser browser){
         super(browser);
         storeHeader = new StoreHeaderComponent(browser);
@@ -49,13 +46,11 @@ public class ProductPage extends BasePage {
         driver.findElement(By.className("woocommerce-store-notice__dismiss-link")).click();
         return this;
     }
-
     public ProductPage addToWishlist() {
         driver.findElement(addToWishlist).click();
         waitForLoadingIcons();
         return this;
     }
-
     public WishlistPage goToWishlist() {
         driver.findElement(goToWishlistFromHeader).click();
         return new WishlistPage(browser);

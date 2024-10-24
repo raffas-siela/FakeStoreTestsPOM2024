@@ -7,11 +7,9 @@ public class WishlistPage extends BasePage{
     protected WishlistPage(Browser browser) {
         super(browser);
     }
-
     public int getNumberOfProducts() {
         return driver.findElements(productItems).size();
     }
-
     public WishlistPage removeProduct(int i) {
         driver.findElement(By.cssSelector(".remove_from_wishlist")).click();
         waitForLoadingIcons();

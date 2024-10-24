@@ -40,7 +40,6 @@ public class WishListTests extends BaseTests {
                 .go(productPage.product07WspinFer)
                 .addToWishlist()
                 .goToWishlist();
-
         Assertions.assertEquals(2, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected.");
     }
@@ -57,7 +56,6 @@ public class WishListTests extends BaseTests {
                 .go(productPage.product01WindSurf)
                 .addToWishlist()
                 .goToWishlist();
-
         Assertions.assertEquals(3, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected.");
     }

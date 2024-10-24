@@ -1,25 +1,23 @@
 package tests;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import pageobjects.CartPage;
 import pageobjects.ProductPage;
 
+//kwotowy250 – kupon na 250 zł. bez ograniczeń - 1
+//kwotowy250pojedynczy – jak wyżej, ale nie może zostać użyty z innymi kuponami - 1
+//10procent – kupon na 10% wartości koszyka bez ograniczeń
+//kwotowy300 – kupon na 300 zł. dla minimalnej wartości koszyka 3000 zł.
+//kwotowy300bezpromocji – kupon na 300 zł. nie obejmujący produktów na promocji
+//10procent1 – kupon na 10% wartości koszyka możliwy do wykorzystania raz przez każdego użytkownika
+//windsurfing350 – kupon obniżający wartość produktu z kategorii windsurfing o 350 zł.
+//starośćnieradość – kupon, który już wygasł i nie powinien zadziałać
+//wrong - kupon nieistniejący - 1
+
 public class CouponTestParametrized extends BaseTests{
-
-    //kwotowy250 – kupon na 250 zł. bez ograniczeń - 1
-    //kwotowy250pojedynczy – jak wyżej, ale nie może zostać użyty z innymi kuponami - 1
-    //10procent – kupon na 10% wartości koszyka bez ograniczeń
-    //kwotowy300 – kupon na 300 zł. dla minimalnej wartości koszyka 3000 zł.
-    //kwotowy300bezpromocji – kupon na 300 zł. nie obejmujący produktów na promocji
-    //10procent1 – kupon na 10% wartości koszyka możliwy do wykorzystania raz przez każdego użytkownika
-    //windsurfing350 – kupon obniżający wartość produktu z kategorii windsurfing o 350 zł.
-    //starośćnieradość – kupon, który już wygasł i nie powinien zadziałać
-    //wrong - kupon nieistniejący - 1
-
     @ParameterizedTest(name = "Product {0} added to Card with coupon: inactive")
     @DisplayName("Using coupon - inactive")
     @CsvSource({
@@ -185,6 +183,4 @@ public class CouponTestParametrized extends BaseTests{
                         "został już użyty nie może być powiązany z innymi kuponami.",
                 "Coupon message is not what expected");
     }
-
-
 }

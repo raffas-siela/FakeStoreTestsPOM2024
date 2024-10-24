@@ -35,6 +35,5 @@ public class WishlistTestsParametrized extends BaseTests{
                 .goToWishlist();
         Assertions.assertEquals(wishlistPage.getNumberOfProducts(), 1,
                 "Number of products in Wishlist is not what is expected");
-
     }
 }

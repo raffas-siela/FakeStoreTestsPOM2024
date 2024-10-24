@@ -6,7 +6,6 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
-
 public class BrowserFactory {
     public Browser createInstance(ConfigurationReader configurationReader) throws NoSuchBrowserException {
         WebDriver driver = createDriverInstance(configurationReader);
