@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Test;
 import pageobjects.CartPage;
 import pageobjects.PaymentPage;
 import pageobjects.ProductPage;
-
 public class CartTests extends BaseTests {
 
     @Test
@@ -187,8 +186,4 @@ public class CartTests extends BaseTests {
         Assertions.assertEquals(paymentPage.currentUrl, browser.baseURL + "zamowienie/",
                 "URL address of this page is not what expected");
     }
-
-
-
-
 }

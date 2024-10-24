@@ -21,6 +21,7 @@ public class CouponsTests extends BaseTests{
         Assertions.assertEquals(cartPage.getSuccessMessage(), "Ten kupon stracił ważność.",
                 "Coupon message is not ok");
     }
+
     @Test
     @DisplayName("Using coupon - active 250 no limit/once")
     public void using_coupon_active_once(){
@@ -33,6 +34,7 @@ public class CouponsTests extends BaseTests{
                 .applyCoupon(coupon);
         Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon został pomyślnie użyty." , "Coupon message is not ok");
     }
+
     @Test
     @DisplayName("Using coupon - active 250 no limit/twice")
     public void using_coupon_active_twice(){
@@ -46,6 +48,7 @@ public class CouponsTests extends BaseTests{
                 .applyCoupon(coupon);
         Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon został zastosowany!", "Coupon message is not ok");
     }
+
     @Test
     @DisplayName("Using coupon - not exist")
     public void using_coupon_not_exist(){
@@ -59,6 +62,7 @@ public class CouponsTests extends BaseTests{
         Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon " + '"'+coupon+'"' + " nie istnieje!",
                 "Coupon message is not what expected");
     }
+
     @Test
     @DisplayName("Using coupon - 10% - Calculating value of promotion")
     public void coupon_10_value(){
@@ -94,6 +98,7 @@ public class CouponsTests extends BaseTests{
         Assertions.assertEquals(cartPage.getSuccessMessage(), "Kupon został pomyślnie użyty.",
                 "Coupon message is not what expected");
     }
+
     @Test
     @DisplayName("Using coupon - negative - for cart value above 3 thousands")
     public void using_coupon_three_thousands_negative(){
@@ -108,4 +113,5 @@ public class CouponsTests extends BaseTests{
                 "Minimalna wartość zamówienia dla tego kuponu to 3 000,00 zł.",
                 "Coupon message is not what expected");
     }
+
 }

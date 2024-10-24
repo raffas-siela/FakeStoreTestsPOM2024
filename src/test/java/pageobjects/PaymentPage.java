@@ -6,8 +6,6 @@ import org.openqa.selenium.WebElement;
 
 public class PaymentPage extends BasePage {
     public String currentUrl = driver.getCurrentUrl();
-
-
     protected PaymentPage(Browser browser) {
         super(browser);
     }
@@ -16,5 +14,4 @@ public class PaymentPage extends BasePage {
     public WebElement isOnPaymentPage() {
         return driver.findElement(isOnOrderPage);
     }
-
 }
