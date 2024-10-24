@@ -21,7 +21,8 @@ public class ProductPage extends BasePage {
     public final String product15ZeglKurs = "/kurs-zeglarski-na-mazurach/";
 
     //---elements---
-    private final By addToCart = By.cssSelector("[name=add-to-cart]");
+    // button in Card "Dodaj do koszyka"
+    private final By addToCart = By.className("single_add_to_cart_button");
     private final By goToCart = By.cssSelector(".woocommerce-message>.button");
     private final By addToWishlist = By.cssSelector(".add_to_wishlist");
     private final By goToWishlistFromHeader = By.cssSelector(".menu-item-248");

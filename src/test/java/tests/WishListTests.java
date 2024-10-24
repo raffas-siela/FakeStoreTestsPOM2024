@@ -24,7 +24,6 @@ public class WishListTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productPage.product01WindSurf)
-                .closeInfoButton()
                 .addToWishlist()
                 .goToWishlist();
         Assertions.assertEquals(1, wishlistPage.getNumberOfProducts(),
@@ -37,7 +36,6 @@ public class WishListTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productPage.product08WspinKosc)
-                .closeInfoButton()
                 .addToWishlist()
                 .go(productPage.product07WspinFer)
                 .addToWishlist()
@@ -53,7 +51,6 @@ public class WishListTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productPage.product08WspinKosc)
-                .closeInfoButton()
                 .addToWishlist()
                 .go(productPage.product07WspinFer)
                 .addToWishlist()
@@ -71,7 +68,6 @@ public class WishListTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productPage.product08WspinKosc)
-                .closeInfoButton()
                 .addToWishlist()
                 .go(productPage.product07WspinFer)
                 .addToWishlist()

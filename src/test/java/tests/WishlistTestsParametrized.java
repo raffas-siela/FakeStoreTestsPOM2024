@@ -31,7 +31,6 @@ public class WishlistTestsParametrized extends BaseTests{
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productUrl)
-                .closeInfoButton()
                 .addToWishlist()
                 .goToWishlist();
         Assertions.assertEquals(wishlistPage.getNumberOfProducts(), 1,

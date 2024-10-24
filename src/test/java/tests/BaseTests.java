@@ -6,15 +6,24 @@ import helpers.NoSuchBrowserException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import pageobjects.ProductPage;
+
+import java.time.Duration;
 
 public class BaseTests {
-    protected Browser browser;
+    protected static Browser browser;
     private static ConfigurationReader configuration;
 
     @BeforeAll
     public static void loadConfiguration(){
         configuration = new ConfigurationReader();
     }
+
     @BeforeEach
     public void setup(){
         BrowserFactory browserFactory = new BrowserFactory();
