@@ -17,6 +17,7 @@ import pageobjects.ProductPage;
 //starośćnieradość – kupon, który już wygasł i nie powinien zadziałać
 //wrong - kupon nieistniejący - 1
 
+
 public class CouponTestParametrized extends BaseTests{
     @ParameterizedTest(name = "Product {0} added to Card with coupon: inactive")
     @DisplayName("Using coupon - inactive")
