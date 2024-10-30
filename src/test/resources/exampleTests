@@ -1,0 +1,163 @@
+
+
+    @Test
+    @DisplayName("Successful order with account creation")
+    public void successful_order_with_account_creation() {
+
+        driver.get(baseUrl + "/product/" + granKoscSlug);
+        driver.findElement(addToCartButtonLocator).click();
+        driver.get(baseUrl + "/koszyk/");
+        driver.findElement(hidingInfo).click();
+        wait.until(ExpectedConditions.elementToBeClickable(goToPayButtonLocator));
+        driver.findElement(goToPayButtonLocator).click();
+
+        driver.findElement(By.name("billing_first_name")).sendKeys("Test");
+        driver.findElement(By.name("billing_last_name")).sendKeys("Testersky");
+        driver.findElement(By.name("billing_address_1")).sendKeys("Wiśniowa");
+        driver.findElement(By.name("billing_city")).sendKeys("Tombstone");
+        driver.findElement(By.name("billing_postcode")).sendKeys("00-123");
+        driver.findElement(By.name("billing_phone")).sendKeys("123123123");
+        // after every successfull test change email on 'testforms+x' +1
+        driver.findElement(By.id("billing_email")).sendKeys("testsforms1234+x5@gmail.com");
+
+        driver.findElement(By.id("createaccount")).click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.name("account_password"))).
+                sendKeys("FmHhXzNxRHj4Vc8");
+
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("#stripe-card-element iframe")));
+        driver.findElement(By.name("cardnumber")).sendKeys("4242424242424242");
+        driver.switchTo().defaultContent();
+
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("#stripe-exp-element iframe")));
+        driver.findElement(By.name("exp-date")).sendKeys("1225");
+        driver.switchTo().defaultContent();
+
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("#stripe-cvc-element iframe")));
+        driver.findElement(By.name("cvc")).sendKeys("321");
+        driver.switchTo().defaultContent();
+
+        driver.findElement(By.id("wc-stripe-new-payment-method")).click();
+        driver.findElement(By.id("terms")).click();
+        driver.findElement(By.id("place_order")).click();
+
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.className("blockUI"),0));
+
+        WebElement orderConfirmation = driver.findElement(By.className("entry-header"));
+        Assertions.assertEquals("Zamówienie otrzymane", orderConfirmation.getText(), "Text wasn't found in the header. Order wasn't probably successfull");
+    }
+
+    @Test
+    @DisplayName("Successful order without creation account")
+    public void successful_order_without_creation_account(){
+        driver.get(baseUrl+"/procuct/"+fuertaSlug);
+        driver.findElement(addToCartButtonLocator).click();
+
+        driver.get(baseUrl+"/koszyk/");
+        driver.findElement(hidingInfo).click();
+        driver.findElement(goToPayButtonLocator).click();
+
+        driver.findElement(By.name("billing_first_name")).sendKeys("Test");
+        driver.findElement(By.name("billing_last_name")).sendKeys("Testersky");
+        driver.findElement(By.name("billing_address_1")).sendKeys("Rasso");
+        driver.findElement(By.name("billing_postcode")).sendKeys("12-345");
+        driver.findElement(By.name("billing_city")).sendKeys("Gotham City");
+        driver.findElement(By.name("billing_phone")).sendKeys("123123123");
+        driver.findElement(By.name("billing_email")).sendKeys("testforms1234+xc1@gmail.com");
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("#stripe-card-element iframe")));
+
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("#stripe-card-element iframe")));
+        //WebElement cardNumberFrame = driver.findElement(By.cssSelector("#stripe-card-element iframe"));
+        //driver.switchTo().frame(cardNumberFrame);
+        driver.findElement(By.name("cardnumber")).sendKeys("4242424242424242");
+        driver.switchTo().defaultContent();
+
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("#stripe-exp-element iframe")));
+        //ebElement cardDateFrame = driver.findElement(By.cssSelector("#stripe-exp-element iframe"));
+        //driver.switchTo().frame(cardDateFrame);
+        driver.findElement(By.name("exp-date")).sendKeys("0325");
+        driver.switchTo().defaultContent();
+
+        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.cssSelector("#stripe-cvc-element iframe")));
+        //WebElement cardCvcFrame = driver.findElement(By.cssSelector("#stripe-cvc-element iframe"));
+        //driver.switchTo().frame(cardCvcFrame);
+        driver.findElement(By.name("cvc")).sendKeys("111");
+        driver.switchTo().defaultContent();
+
+        driver.findElement(By.id("terms")).click();
+        driver.findElement(By.name("woocommerce_checkout_place_order")).click();
+        wait.until(ExpectedConditions.numberOfElementsToBe((By.className("blockUI")),0));
+
+        Assertions.assertEquals("Zamówienie otrzymane", driver.findElement(By.className("entry-title")).getText(),
+                "Text wasn't found in the header. Order wasn't probably successfull");
+    }
+
+    @Test
+    @DisplayName("Successful order with login to user account")
+    public void Successful_order_with_login_to_user_account() {
+
+        driver.get(baseUrl + "/product/" + fuertaSlug);
+        driver.findElement(By.name("add-to-cart")).click();
+
+        driver.get(baseUrl+ "/koszyk/");
+        driver.findElement(hidingInfo).click();
+        driver.findElement(By.className("wc-proceed-to-checkout")).click();
+
+        driver.findElement(By.className("showlogin")).click();
+        wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.name("username"))));
+        driver.findElement(By.name("username")).sendKeys("testforms1234@gmail.com");
+        driver.findElement(By.name("password")).sendKeys("FmHhXzNxRHj4Vc8");
+        driver.findElement(By.name("rememberme")).click();
+        driver.findElement(By.name("login")).click();
+
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.className("blockUI"), 0));
+        driver.findElement(By.className("woocommerce-form__input-checkbox")).click();
+        driver.findElement(By.name("woocommerce_checkout_place_order")).click();
+
+        wait.until(ExpectedConditions.numberOfElementsToBe(By.className("blockUI"),0));
+
+        Assertions.assertEquals("Zamówienie otrzymane", driver.findElement(orderConfirmation).getText(),
+                "Text wasn't found in the header. Order wasn't probably successfull");
+    }
+
+    @Test
+    @DisplayName("dodajemy 2 produkty do koszyka, usywamy i sprawdzamy czy koszyk jest pusty(przygotowanie POM)")
+
+    @Test
+    @DisplayName("dodajemy 1 produkt do koszyka i sprawdzamy czy jest 1(przygotowanie POM)")
+
+
+
+
+--------------------------------
+    @ParameterizedTest(name = "Dodanie produktu {0} do koszyka")
+    @DisplayName("ParameterizedTest - One product added to cart should cart has one product")
+    @CsvSource({
+            product03WindGrecja,
+            product02WindEgipt,
+            product01WindSurf
+    })
+    public void paramOnlyOneProductCart(String productUrl){
+        ProductPage productPage = new ProductPage(browser);
+        CartPage cartPage = productPage
+                .go(ProductPage.productSlug)
+                .addToCart()
+                .goToCart();
+        int numberOfProducts = cartPage.getNumberOfProducts();
+        Assertions.assertEquals(1, numberOfProducts, "Number of produts in cart is not expected");
+
+---------------------------
+public class CalculatorTest {
+    @ParameterizedTest(name = "Test dodawania {0} + {1}")
+    @DisplayName("Test dodawania z różnymi zestawami danych")
+    @CsvSource({
+            "5, 5",
+            "7, 3",
+            "6, 4",
+            "10, 0"
+    })
+    public void testAddition(int a, int b) {
+        int result = a + b;
+        Assertions.assertEquals(10, result, "Wynik dodawania nie jest zgodny z oczekiwaniami");
+    }
+}
