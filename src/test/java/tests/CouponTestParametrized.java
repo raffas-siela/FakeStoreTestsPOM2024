@@ -261,7 +261,6 @@ public class CouponTestParametrized extends BaseTests{
             "/windsurfing-w-karpathos/",
             "/windsurfing-w-lanzarote-costa-teguise/",
             "/wyspy-zielonego-przyladka-sal/",
-            "/gran-koscielcow/",
     })
     public void using_coupon_windsurfing350_positive(String productUrl){
         String copupon = "windsurfing350";
