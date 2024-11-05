@@ -8,7 +8,7 @@ public final class Browser {
     public final WebDriverWait wait;
     public Browser(WebDriver driver, ConfigurationReader configuration) {
         this.driver = driver;
-        this.baseURL = configuration.getBaseURL();
+        this.baseURL = configuration.getBaseUrl();
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(configuration.getWaitInSeconds()));
     }
 }

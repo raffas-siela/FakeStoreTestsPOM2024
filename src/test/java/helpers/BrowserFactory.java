@@ -11,15 +11,16 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.rmi.Remote;
 
 public class BrowserFactory {
-    private final String targetErrorMessage = "The target provided in configuration.properties is not correct";
+
+    private final String targetErrorMessage = "The target provided in configuration.properties is not correct.";
+
     public Browser createInstance(ConfigurationReader configurationReader) throws NoSuchBrowserException {
         WebDriver driver = createDriverInstance(configurationReader);
         return new Browser(driver, configurationReader);
     }
-    private WebDriver createDriverInstance(ConfigurationReader configuration) throws NoSuchBrowserException{
+    private WebDriver createDriverInstance(ConfigurationReader configuration) throws NoSuchBrowserException {
         String browser = configuration.getBrowser();
 
         switch (browser) {
@@ -39,7 +40,7 @@ public class BrowserFactory {
         ChromeOptions options = new ChromeOptions();
         if (configuration.isHeadless()) options.addArguments("--headless=new");
 
-        switch (configuration.getTarget()){
+        switch (configuration.getTarget()) {
             case "local" -> {
                 return new ChromeDriver(options);
             }
@@ -49,11 +50,11 @@ public class BrowserFactory {
             default -> throw new RuntimeException(targetErrorMessage);
         }
     }
-    private WebDriver createFirefoxInstance(ConfigurationReader configuration){
-        FirefoxOptions options = new FirefoxOptions();
-        if (configuration.isHeadless()) options.addArguments("--headless=new");
 
-        switch (configuration.getTarget()){
+    private WebDriver createFirefoxInstance(ConfigurationReader configuration) {
+        FirefoxOptions options = new FirefoxOptions();
+        if (configuration.isHeadless()) options.addArguments("-headless");
+        switch (configuration.getTarget()) {
             case "local" -> {
                 return new FirefoxDriver(options);
             }
@@ -63,11 +64,11 @@ public class BrowserFactory {
             default -> throw new RuntimeException(targetErrorMessage);
         }
     }
-    private WebDriver createEdgeInstance(ConfigurationReader configuration){
+
+    private WebDriver createEdgeInstance(ConfigurationReader configuration) {
         EdgeOptions options = new EdgeOptions();
         if (configuration.isHeadless()) options.addArguments("--headless=new");
-
-        switch (configuration.getTarget()){
+        switch (configuration.getTarget()) {
             case "local" -> {
                 return new EdgeDriver(options);
             }
@@ -77,13 +78,15 @@ public class BrowserFactory {
             default -> throw new RuntimeException(targetErrorMessage);
         }
     }
-    private RemoteWebDriver createRemoteInstance(ConfigurationReader configuration, MutableCapabilities options){
+
+    private RemoteWebDriver createRemoteInstance(ConfigurationReader configuration, MutableCapabilities options) {
+        options.setCapability("browserVersion", configuration.getBrowserVersion());
+        options.setCapability("platformName", configuration.getPlatformName());
         try {
             return new RemoteWebDriver(new URL(configuration.getRemoteURL()), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException(
-                    "RemoteURL provided in configuration.properties is not correct" +
-                            "\n" + e);
+                    "RemoteURL provided in configuration.properties is not correct." + "\n" + e);
         }
     }
 }
