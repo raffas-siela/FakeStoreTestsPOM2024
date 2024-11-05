@@ -23,10 +23,10 @@ public class BaseTests {
             throw new RuntimeException(e);
         }
     }
-    @AfterEach
+/*    @AfterEach
     public void quitDriver(){
         browser.driver.quit();
-    }
+    }*/
     protected double parsePrice(String price) {
         // Usunięcie spacji, symbolu waluty i zamiana przecinka na kropkę
         String cleanedPrice = price.replace(" ", "").replace("zł", "").replace(",", ".");
