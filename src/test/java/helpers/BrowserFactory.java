@@ -86,7 +86,8 @@ public class BrowserFactory {
             return new RemoteWebDriver(new URL(configuration.getRemoteURL()), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException(
-                    "RemoteURL provided in configuration.properties is not correct." + "\n" + e);
+                    "RemoteURL provided in configuration.properties is not correct."
+                            + "\n" + e);
         }
     }
 }
