@@ -31,6 +31,7 @@ public class CartTestsParametrized extends BaseTests{
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productUrl)  // Assuming go method takes productUrl as parameter
+                .closeInfoButton()
                 .addToCart()
                 .goToCart();
         int numberOfProducts = cartPage.getNumberOfProducts();
