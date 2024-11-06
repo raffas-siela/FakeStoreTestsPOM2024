@@ -35,6 +35,7 @@ public class CartTestsParametrized extends BaseTests{
                 .addToCart()
                 .goToCart();
         int numberOfProducts = cartPage.getNumberOfProducts();
-        Assertions.assertEquals(1, numberOfProducts, "Number of products in cart is not expected");
+        Assertions.assertEquals(1, numberOfProducts,
+                "Number of products in cart is not expected");
     }
 }

@@ -30,7 +30,10 @@ public class BaseTests {
     }
     protected double parsePrice(String price) {
         // Usunięcie spacji, symbolu waluty i zamiana przecinka na kropkę
-        String cleanedPrice = price.replace(" ", "").replace("zł", "").replace(",", ".");
+        String cleanedPrice = price
+                .replace(" ", "")
+                .replace("zł", "")
+                .replace(",", ".");
         return Double.parseDouble(cleanedPrice);
     }
 }
