@@ -26,7 +26,8 @@ public class CartTests extends BaseTests {
                 .addToCart()
                 .goToCart();
         int numberOfProducts = cartPage.getNumberOfProducts();
-        Assertions.assertEquals(1, numberOfProducts, "Number of produts in cart is not expected");
+        Assertions.assertEquals(1, numberOfProducts,
+                "Number of produts in cart is not expected");
     }
 
     @Test

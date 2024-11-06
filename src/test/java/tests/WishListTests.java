@@ -76,7 +76,8 @@ public class WishListTests extends BaseTests {
                 .go(productPage.product01WindSurf)
                 .addToWishlist()
                 .goToWishlist();
-        Assertions.assertTrue(wishlistPage.getNumberOfProducts() > 0, "Wishlist is empty before removing a product.");
+        Assertions.assertTrue(wishlistPage.getNumberOfProducts() > 0,
+                "Wishlist is empty before removing a product.");
         wishlistPage.removeProduct(0);
         Assertions.assertEquals(2, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected.");
