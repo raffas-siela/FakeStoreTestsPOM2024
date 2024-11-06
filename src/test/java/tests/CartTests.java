@@ -1,8 +1,6 @@
 package tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import pageobjects.CartPage;
 import pageobjects.PaymentPage;
 import pageobjects.ProductPage;
@@ -105,6 +103,7 @@ public class CartTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product10YogaWis)
+                .closeInfoButton()
                 .addToCart()
                 .goToCart()
                 .changeQuantity(-3);
@@ -160,6 +159,7 @@ public class CartTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product14YogaMal)
+                .closeInfoButton()
                 .addToCart()
                 .go(productPage.product15ZeglKurs)
                 .addToCart()
@@ -178,6 +178,7 @@ public class CartTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product07WspinFer)
+                .closeInfoButton()
                 .addToCart()
                 .goToCart();
         PaymentPage paymentPage = cartPage

@@ -14,6 +14,7 @@ public class BaseTests {
     public static void loadConfiguration(){
         configuration = new ConfigurationReader();
     }
+
     @BeforeEach
     public void setup(){
         BrowserFactory browserFactory = new BrowserFactory();
