@@ -16,7 +16,6 @@ public class PaymentPage extends BasePage {
     private final By inputCsvCode = By.id("stripe-cvc-element");
 
 
-
     public String currentUrl = driver.getCurrentUrl();
     protected PaymentPage(Browser browser) {
         super(browser);

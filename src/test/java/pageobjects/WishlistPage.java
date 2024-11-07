@@ -10,9 +10,8 @@ public class WishlistPage extends BasePage{
     public int getNumberOfProducts() {
         return driver.findElements(productItems).size();
     }
-    public WishlistPage removeProduct(int i) {
+    public void removeProduct(int i) {
         driver.findElement(By.cssSelector(".remove_from_wishlist")).click();
         waitForLoadingIcons();
-        return this;
     }
 }
