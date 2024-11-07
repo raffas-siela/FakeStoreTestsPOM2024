@@ -9,9 +9,9 @@ public class CartTests extends BaseTests {
     @Test
     @DisplayName("No product added to cart should cart be empty")
     public void emptyCart() {
-        CartPage cartpage = new CartPage(browser);
-        cartpage.go();
-        int numberOfProducts = cartpage.getNumberOfProducts();
+        CartPage cartPage = new CartPage(browser);
+        cartPage.go();
+        int numberOfProducts = cartPage.getNumberOfProducts();
 
         Assertions.assertEquals(0, numberOfProducts,
                 "Number of products in cart is not 0");

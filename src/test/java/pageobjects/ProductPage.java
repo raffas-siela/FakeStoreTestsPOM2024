@@ -3,6 +3,7 @@ import helpers.Browser;
 import org.openqa.selenium.By;
 
 public class ProductPage extends BasePage {
+
     //---products---
     public final String product01WindSurf = "/fuerteventura-sotavento/";
     public final String product02WindEgipt = "/egipt-el-gouna/";
