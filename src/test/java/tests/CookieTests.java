@@ -29,6 +29,49 @@ public class CookieTests extends BaseTests{
         Assertions.assertEquals(7, browser.driver.manage().getCookies().size(),
                 "Cookies was not add");
     }
+
+    @Test
+    @DisplayName("Adding cookie Info")
+    public void addingCookieInfo(){
+        // Initialize the page
+        MainPage mainPage = new MainPage(browser);
+        mainPage.go();
+        // Create a new cookie with a specific expiration date
+        Cookie newCookie = new Cookie.Builder("store_noticef7db772cd2958546f5ffc7e2822d64e8",
+                "hidden")
+                .domain(".fakestore.testelka.pl")
+                .path("/")
+                .isSecure(true)
+                .build();
+        browser.driver.manage().addCookie(newCookie);
+        // Assert that the cookie has been added
+        Assertions.assertEquals(7, browser.driver.manage().getCookies().size(),
+                "Cookies was not add");
+    }
+
+    @Test
+    @DisplayName("Adding cookie Info date")
+    public void addingCookieInfoDate(){
+        // Initialize the page
+        MainPage mainPage = new MainPage(browser);
+        mainPage.go();
+        // Create a new cookie with a specific expiration date
+        Cookie newCookie = new Cookie.Builder("store_noticef7db772cd2958546f5ffc7e2822d64e8",
+                "hidden")
+                .domain("fakestore.testelka.pl")
+                .path("/")
+                .expiresOn(new GregorianCalendar(2025, Calendar.AUGUST, 24).getTime())
+                .isHttpOnly(true)
+                .isSecure(true)
+                .build();
+        browser.driver.manage().addCookie(newCookie);
+        // Assert that the cookie has been added
+        Assertions.assertEquals(7, browser.driver.manage().getCookies().size(),
+                "Cookies was not add");
+    }
+
+
+
     @Test
     @DisplayName("Items in Cart cookie")
     public void itemsInCartCookie(){
