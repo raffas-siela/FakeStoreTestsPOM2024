@@ -6,21 +6,19 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.support.ui.Select;
 import pageobjects.DropdownListPage;
 
+import java.util.List;
+
 public class DropdownListTests extends BaseTests{
     @Test
     @DisplayName("Single choice select")
     public void singleChoiceSelect(){
-        // Inicjalizacja strony z listą rozwijaną
         DropdownListPage dropdownListPage = new DropdownListPage(browser);
-
-        // Wybór opcji z listy rozwijanej
-        dropdownListPage.selectSingleChoice("passion-fruit");
-
-        // Pobranie wybranej opcji
-        String selectedOption = dropdownListPage.getSelectedOption();
-
-        // Sprawdzenie, czy wybrana opcja jest poprawna
-        Assertions.assertEquals("passion-fruit", selectedOption, "The selected option is incorrect");
+        dropdownListPage
+                .go();
+        dropdownListPage.selectSingleChoice("marakuja");
+        String selectedOptions = dropdownListPage.getSelectedOption();
+        Assertions.assertEquals("marakuja", selectedOptions,
+                "The selected otpion is not correct");
     }
 
     @Test
@@ -29,7 +27,21 @@ public class DropdownListTests extends BaseTests{
         DropdownListPage dropdownListPage = new DropdownListPage(browser);
         dropdownListPage
                 .go();
-        //Select select = new Select(multipleChoiceSelect());
-
+        Select select = new Select(dropdownListPage.getDropdownMulti());
+        select.deselectAll();
+        dropdownListPage.selectMultipleChoice("truskawkowy", "waniliowy");
+        List<String> selectedOptions = dropdownListPage.getSelectedOptions();
+        Assertions.assertTrue(selectedOptions.contains("truskawkowy"),
+                "The selected option 'truskawkowy' is not correct");
+        Assertions.assertTrue(selectedOptions.contains("waniliowy"),
+                "The selected option 'waniliowy' is not correct");
+    }
+    @Test
+    @DisplayName("Checking number of options")
+    public void checkingList(){
+        DropdownListPage dropdownListPage = new DropdownListPage(browser);
+        dropdownListPage.go();
+        Select select = new Select(dropdownListPage.getDropdownMulti());
+        Assertions.assertEquals(4, select.getOptions().size());
     }
 }
