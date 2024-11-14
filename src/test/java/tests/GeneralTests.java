@@ -23,7 +23,7 @@ public class GeneralTests extends BaseTests{
         Pdf pdf = printer.print(printOptions);
         String content = pdf.getContent();
 
-        Path outputPath = Paths.get("target/output.pdf");
+        Path outputPath = Paths.get("src/test/java/helpers/prints/output.pdf");
 
         byte[] decodedBytes = Base64.getDecoder().decode(content);
         try {
@@ -38,10 +38,10 @@ public class GeneralTests extends BaseTests{
         MainPage mainPage = new MainPage(browser);
         mainPage.go();
         File screenshot = ((TakesScreenshot)browser.driver).getScreenshotAs(OutputType.FILE);
-        Path destinationPath = Paths.get("target/image.png");
+        Path destinationPath = Paths.get("src/test/java/helpers/screenshotsPage/image.png");
         try {
             Files.copy(screenshot.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("Screenshot saved.");
+            System.out.println("Screenshot saved");
         } catch (IOException e) {
             throw new RuntimeException("An error occured while creating screenshot file: " + e);
         }
@@ -53,7 +53,7 @@ public class GeneralTests extends BaseTests{
         WebElement element = browser.driver.findElement(By.id("masthead"));
 
         File screenshot = element.getScreenshotAs(OutputType.FILE);
-        Path destinationPath = Paths.get("target/image.png");
+        Path destinationPath = Paths.get("src/test/java/helpers/screenshotsElement/image.png");
         try {
             Files.copy(screenshot.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
             System.out.println("Screenshot saved.");
