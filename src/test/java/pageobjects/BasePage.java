@@ -2,10 +2,11 @@ package pageobjects;
 import helpers.Browser;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public abstract class BasePage {
-    private By loadingIcon = By.cssSelector(".blockUI");
+    private final By loadingIcon = By.cssSelector(".blockUI");
 
     protected final WebDriver driver;
     protected final Browser browser;
@@ -14,6 +15,7 @@ public abstract class BasePage {
         this.browser = browser;
         this.driver = browser.driver;
         baseURL = browser.baseURL;
+        PageFactory.initElements(driver, this);
     }
     protected void waitForLoadingIcons(){
         browser.wait.until(ExpectedConditions.numberOfElementsToBe(loadingIcon, 0));

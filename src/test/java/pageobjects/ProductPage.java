@@ -3,6 +3,7 @@ import helpers.Browser;
 import org.openqa.selenium.By;
 
 public class ProductPage extends BasePage {
+
     //---products---
     public final String product01WindSurf = "/fuerteventura-sotavento/";
     public final String product02WindEgipt = "/egipt-el-gouna/";
@@ -23,7 +24,7 @@ public class ProductPage extends BasePage {
     //---elements---
     private final By addToCart = By.className("single_add_to_cart_button");
     private final By goToCart = By.cssSelector(".woocommerce-message>.button");
-    private final By addToWishlist = By.cssSelector(".add_to_wishlist");
+    private final By addToWishlistButton = By.cssSelector(".add_to_wishlist");
     private final By goToWishlistFromHeader = By.cssSelector(".menu-item-248");
     public final StoreHeaderComponent storeHeader;
     public ProductPage(Browser browser){
@@ -47,7 +48,7 @@ public class ProductPage extends BasePage {
         return this;
     }
     public ProductPage addToWishlist() {
-        driver.findElement(addToWishlist).click();
+        driver.findElement(addToWishlistButton).click();
         waitForLoadingIcons();
         return this;
     }

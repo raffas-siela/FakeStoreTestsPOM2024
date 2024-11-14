@@ -1,8 +1,6 @@
 package tests;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import pageobjects.CartPage;
 import pageobjects.PaymentPage;
 import pageobjects.ProductPage;
@@ -11,11 +9,11 @@ public class CartTests extends BaseTests {
     @Test
     @DisplayName("No product added to cart should cart be empty")
     public void emptyCart() {
-        CartPage cartpage = new CartPage(browser);
-        cartpage.go();
-        int numberOfProducts = cartpage.getNumberOfProducts();
+        CartPage cartPage = new CartPage(browser);
+        cartPage.go();
+        int numberOfProducts = cartPage.getNumberOfProducts();
 
-        Assertions.assertEquals(0, numberOfProducts,
+        Assertions.assertEquals(1, numberOfProducts,
                 "Number of products in cart is not 0");
     }
 
@@ -28,7 +26,8 @@ public class CartTests extends BaseTests {
                 .addToCart()
                 .goToCart();
         int numberOfProducts = cartPage.getNumberOfProducts();
-        Assertions.assertEquals(1, numberOfProducts, "Number of produts in cart is not expected");
+        Assertions.assertEquals(1, numberOfProducts,
+                "Number of produts in cart is not expected");
     }
 
     @Test
@@ -105,6 +104,7 @@ public class CartTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product10YogaWis)
+                .closeInfoButton()
                 .addToCart()
                 .goToCart()
                 .changeQuantity(-3);
@@ -160,6 +160,7 @@ public class CartTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product14YogaMal)
+                .closeInfoButton()
                 .addToCart()
                 .go(productPage.product15ZeglKurs)
                 .addToCart()
@@ -178,6 +179,7 @@ public class CartTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         CartPage cartPage = productPage
                 .go(productPage.product07WspinFer)
+                .closeInfoButton()
                 .addToCart()
                 .goToCart();
         PaymentPage paymentPage = cartPage

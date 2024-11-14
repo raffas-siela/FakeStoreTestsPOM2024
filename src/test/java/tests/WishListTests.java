@@ -24,6 +24,7 @@ public class WishListTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productPage.product01WindSurf)
+                .closeInfoButton()
                 .addToWishlist()
                 .goToWishlist();
         Assertions.assertEquals(1, wishlistPage.getNumberOfProducts(),
@@ -36,6 +37,7 @@ public class WishListTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productPage.product08WspinKosc)
+                .closeInfoButton()
                 .addToWishlist()
                 .go(productPage.product07WspinFer)
                 .addToWishlist()
@@ -50,6 +52,7 @@ public class WishListTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productPage.product08WspinKosc)
+                .closeInfoButton()
                 .addToWishlist()
                 .go(productPage.product07WspinFer)
                 .addToWishlist()
@@ -66,13 +69,15 @@ public class WishListTests extends BaseTests {
         ProductPage productPage = new ProductPage(browser);
         WishlistPage wishlistPage = productPage
                 .go(productPage.product08WspinKosc)
+                .closeInfoButton()
                 .addToWishlist()
                 .go(productPage.product07WspinFer)
                 .addToWishlist()
                 .go(productPage.product01WindSurf)
                 .addToWishlist()
                 .goToWishlist();
-        Assertions.assertTrue(wishlistPage.getNumberOfProducts() > 0, "Wishlist is empty before removing a product.");
+        Assertions.assertTrue(wishlistPage.getNumberOfProducts() > 0,
+                "Wishlist is empty before removing a product.");
         wishlistPage.removeProduct(0);
         Assertions.assertEquals(2, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected.");
