@@ -54,11 +54,11 @@ public class BaseTests {
 
     private void takeScreenshotsOnFail(String displayName){
         File screenshot = ((TakesScreenshot)browser.driver).getScreenshotAs(OutputType.FILE);
-        String folderLocation = "./screenshots/";
+        String folderLocation = "src/test/java/helpers/screenshotsFail/";
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss");
         String formattedNow = LocalDateTime.now().format(formatter);
-        String destinationPath = Paths.get("./screenshots/" + displayName + " - " + formattedNow + ".png").toString();
+        String destinationPath = Paths.get("src/test/java/helpers/screenshotsFail/" + displayName + " - " + formattedNow + ".png").toString();
         try{
             Files.createDirectories(Paths.get(folderLocation));
             Files.copy(screenshot.toPath(), Path.of(destinationPath));
