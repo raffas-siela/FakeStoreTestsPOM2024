@@ -1,18 +1,22 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.Pdf;
 import org.openqa.selenium.PrintsPage;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.print.PrintOptions;
 import pageobjects.MainPage;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 
-public class PrintTest extends BaseTests{
+public class GeneralTests extends BaseTests{
     @Test
     public void printPage(){
         MainPage mainPage = new MainPage(browser);
@@ -27,8 +31,23 @@ public class PrintTest extends BaseTests{
         byte[] decodedBytes = Base64.getDecoder().decode(content);
         try {
             Files.write(outputPath, decodedBytes);
+            System.out.println("Output saved.");
         } catch (IOException e) {
             throw new RuntimeException("An error occured while writing the PDF file: " + e);
         }
     }
+    @Test
+    public void ScreenshotTest(){
+        MainPage mainPage = new MainPage(browser);
+        mainPage.go();
+        File screenshot = ((TakesScreenshot)browser.driver).getScreenshotAs(OutputType.FILE);
+        Path destinationPath = Paths.get("target/image.png");
+        try {
+            Files.copy(screenshot.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Screenshot saved.");
+        } catch (IOException e) {
+            throw new RuntimeException("An error occured while creating screenshot file: " + e);
+        }
+    }
+
 }
