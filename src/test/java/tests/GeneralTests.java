@@ -1,10 +1,7 @@
 package tests;
 
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.Pdf;
-import org.openqa.selenium.PrintsPage;
-import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.*;
 import org.openqa.selenium.print.PrintOptions;
 import pageobjects.MainPage;
 
@@ -37,7 +34,7 @@ public class GeneralTests extends BaseTests{
         }
     }
     @Test
-    public void ScreenshotTest(){
+    public void ScreenshotPageTest(){
         MainPage mainPage = new MainPage(browser);
         mainPage.go();
         File screenshot = ((TakesScreenshot)browser.driver).getScreenshotAs(OutputType.FILE);
@@ -49,5 +46,19 @@ public class GeneralTests extends BaseTests{
             throw new RuntimeException("An error occured while creating screenshot file: " + e);
         }
     }
+    @Test
+    public void ScreenshotElementTest(){
+        MainPage mainPage = new MainPage(browser);
+        mainPage.go();
+        WebElement element = browser.driver.findElement(By.id("masthead"));
 
+        File screenshot = element.getScreenshotAs(OutputType.FILE);
+        Path destinationPath = Paths.get("target/image.png");
+        try {
+            Files.copy(screenshot.toPath(), destinationPath, StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("Screenshot saved.");
+        } catch (IOException e) {
+            throw new RuntimeException("An error occured while creating screenshot file: " + e);
+        }
+    }
 }
