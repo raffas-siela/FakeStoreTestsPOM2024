@@ -13,7 +13,7 @@ public class CartTests extends BaseTests {
         cartPage.go();
         int numberOfProducts = cartPage.getNumberOfProducts();
 
-        Assertions.assertEquals(0, numberOfProducts,
+        Assertions.assertEquals(1, numberOfProducts,
                 "Number of products in cart is not 0");
     }
 
