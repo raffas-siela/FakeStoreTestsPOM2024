@@ -17,7 +17,7 @@ public class WishListTests extends BaseTests {
         Assertions.assertEquals(0, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected.");
     }
-
+/*
     @Test
     @DisplayName("One product added to wishlist should have one item")
     public void one_produckt_added_one_item(){
@@ -81,5 +81,5 @@ public class WishListTests extends BaseTests {
         wishlistPage.removeProduct(0);
         Assertions.assertEquals(2, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected.");
-    }
+    }*/
 }

@@ -58,7 +58,8 @@ public class BaseTests {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH-mm-ss");
         String formattedNow = LocalDateTime.now().format(formatter);
-        String destinationPath = Paths.get("src/test/java/helpers/screenshotsFail/" + displayName + " - " + formattedNow + ".png").toString();
+        String destinationPath = Paths.get("src/test/java/helpers/screenshotsFail/" +
+                displayName + " - " + formattedNow + ".png").toString();
         try{
             Files.createDirectories(Paths.get(folderLocation));
             Files.copy(screenshot.toPath(), Path.of(destinationPath));
