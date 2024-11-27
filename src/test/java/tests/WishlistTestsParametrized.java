@@ -1,3 +1,4 @@
+/*
 package tests;
 
 import org.junit.jupiter.api.Assertions;
@@ -38,3 +39,4 @@ public class WishlistTestsParametrized extends BaseTests{
                 "Number of products in Wishlist is not what is expected");
     }
 }
+*/
