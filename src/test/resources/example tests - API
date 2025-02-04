@@ -1,0 +1,103 @@
+# Test automatyczny Java z użyciem Selenium w POM sprawdzający kod odpowiedzi
+
+Poniżej znajduje się przykładowy kod testu automatycznego w języku Java, który używa Selenium w architekturze Page Object Model (POM) do sprawdzenia, czy kod odpowiedzi z endpointu `https://jsonplaceholder.typicode.com/posts` jest równy '200'.
+
+## Struktura projektu
+
+1. **Page Object Model (POM)**
+   - `ApiPage.java`: Klasa reprezentująca stronę API.
+2. **Test**
+   - `ApiTest.java`: Klasa testowa.
+
+## Krok 1: Dodanie zależności w pliku `pom.xml`
+
+Upewnij się, że masz dodane odpowiednie zależności w pliku `pom.xml`:
+
+```xml
+<dependencies>
+    <!-- Selenium dependencies -->
+    <dependency>
+        <groupId>org.seleniumhq.selenium</groupId>
+        <artifactId>selenium-java</artifactId>
+        <version>3.141.59</version>
+    </dependency>
+    <!-- TestNG dependencies -->
+    <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>7.4.0</version>
+        <scope>test</scope>
+    </dependency>
+    <!-- RestAssured dependencies -->
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>4.3.3</version>
+    </dependency>
+</dependencies>
+```
+
+## Krok 2: Utworzenie klasy `ApiPage.java`
+
+```java
+package com.example.pages;
+
+import io.restassured.RestAssured;
+import io.restassured.response.Response;
+
+public class ApiPage {
+
+    private static final String BASE_URL = "https://jsonplaceholder.typicode.com";
+
+    public Response getPosts() {
+        return RestAssured.get(BASE_URL + "/posts");
+    }
+}
+```
+
+## Krok 3: Utworzenie klasy testowej `ApiTest.java`
+
+```java
+package com.example.tests;
+
+import com.example.pages.ApiPage;
+import io.restassured.response.Response;
+import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
+public class ApiTest {
+
+    private ApiPage apiPage;
+
+    @BeforeClass
+    public void setUp() {
+        apiPage = new ApiPage();
+    }
+
+    @Test
+    public void testGetPostsResponseCode() {
+        Response response = apiPage.getPosts();
+        int statusCode = response.getStatusCode();
+        Assert.assertEquals(statusCode, 200, "Expected status code to be 200");
+    }
+}
+```
+
+## Wyjaśnienie
+
+1. **`ApiPage.java`**:
+   - Klasa `ApiPage` zawiera metodę `getPosts()`, która wykonuje żądanie GET do endpointu `/posts` i zwraca odpowiedź.
+
+2. **`ApiTest.java`**:
+   - Klasa `ApiTest` zawiera metodę `testGetPostsResponseCode()`, która sprawdza, czy kod odpowiedzi z endpointu `/posts` jest równy `200`.
+
+3. **Zależności**:
+   - Selenium: Używane do automatyzacji przeglądarki (nie jest bezpośrednio używane w tym teście, ale może być używane w innych częściach projektu).
+   - TestNG: Framework do testowania.
+   - RestAssured: Biblioteka do testowania API.
+
+Ten kod można uruchomić jako test TestNG, aby sprawdzić, czy kod odpowiedzi z endpointu `https://jsonplaceholder.typicode.com/posts` jest równy `200`.
+
+Źródła:
+- 
