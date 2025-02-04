@@ -13,7 +13,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 
-public class GeneralTests extends BaseTests{
+public class WorkerTests extends BaseTests{
     @Test
     public void printPage(){
         MainPage mainPage = new MainPage(browser);
