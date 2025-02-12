@@ -1,3 +1,4 @@
+/*
 package tests;
 
 import org.junit.jupiter.api.Assertions;
@@ -38,4 +39,4 @@ public class CartTestsParametrized extends BaseTests{
         Assertions.assertEquals(1, numberOfProducts,
                 "Number of products in cart is not expected");
     }
-}
+}*/

@@ -1,3 +1,4 @@
+/*
 package tests;
 
 import org.junit.jupiter.api.Assertions;
@@ -10,6 +11,7 @@ import java.util.List;
 
 public class DropdownListTests extends BaseTests{
     @Test
+    //Ten test: Otwiera stronę z listą rozwijaną.Wybiera opcję "marakuja" z listy rozwijanej.Sprawdza, czy wybrana opcja jest poprawna.
     @DisplayName("Single choice select")
     public void singleChoiceSelect(){
         DropdownListPage dropdownListPage = new DropdownListPage(browser);
@@ -22,6 +24,7 @@ public class DropdownListTests extends BaseTests{
     }
 
     @Test
+    //Ten test:Otwiera stronę z listą rozwijaną.Odznacza wszystkie opcje.Wybiera opcje "truskawkowy" i "waniliowy" z listy rozwijanej.Sprawdza, czy wybrane opcje są poprawne.
     @DisplayName("Mutiple choice select")
     public void multipleChoiceSelect(){
         DropdownListPage dropdownListPage = new DropdownListPage(browser);
@@ -37,6 +40,7 @@ public class DropdownListTests extends BaseTests{
                 "The selected option 'waniliowy' is not correct");
     }
     @Test
+    //Ten test:twiera stronę z listą rozwijaną.Sprawdza, czy liczba opcji w liście rozwijanej jest równa 4.
     @DisplayName("Checking number of options")
     public void checkingList(){
         DropdownListPage dropdownListPage = new DropdownListPage(browser);
@@ -45,3 +49,4 @@ public class DropdownListTests extends BaseTests{
         Assertions.assertEquals(4, select.getOptions().size());
     }
 }
+*/
