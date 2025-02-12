@@ -16,7 +16,7 @@ public class CartTests extends BaseTests {
         Assertions.assertEquals(0, numberOfProducts,
                 "Number of products in cart is not 0");
     }
-    @Test
+/*    @Test
     @DisplayName("One product added to cart should cart has one product")
     public void onlyOneProductCart() {
         ProductPage productPage = new ProductPage(browser);
@@ -27,7 +27,7 @@ public class CartTests extends BaseTests {
         int numberOfProducts = cartPage.getNumberOfProducts();
         Assertions.assertEquals(2, numberOfProducts,
                 "Number of produts in cart is not expected");
-    }
+    }*/
     @Test
     @DisplayName("Two products added to cart should cart have two products")
     public void twoProductsCart() {

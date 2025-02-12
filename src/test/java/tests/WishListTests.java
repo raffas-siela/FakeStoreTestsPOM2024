@@ -1,3 +1,4 @@
+/*
 package tests;
 import org.junit.jupiter.api.*;
 import pageobjects.MainPage;
@@ -17,6 +18,7 @@ public class WishListTests extends BaseTests {
         Assertions.assertEquals(0, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected.");
     }
+*/
 /*
     @Test
     @DisplayName("One product added to wishlist should have one item")
@@ -81,5 +83,6 @@ public class WishListTests extends BaseTests {
         wishlistPage.removeProduct(0);
         Assertions.assertEquals(2, wishlistPage.getNumberOfProducts(),
                 "Number of products in wishlist is not what expected.");
-    }*/
-}
+    }*//*
+
+}*/

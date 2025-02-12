@@ -39,6 +39,7 @@ public class CartPage extends BasePage {
     public String getInfoEmpty() {
         return driver.findElement(emptyCartInfo).getText();
     }
+
     public boolean updateButtonIsEnabled() {
         return driver.findElement(updateCartButton).isEnabled();
     }
