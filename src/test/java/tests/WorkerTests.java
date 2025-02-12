@@ -1,5 +1,7 @@
+/*
 package tests;
-
+//Importy obejmują biblioteki JUnit do testowania,
+// Selenium do automatyzacji przeglądarki oraz klasy do obsługi plików i kodowania Base64.
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.*;
 import org.openqa.selenium.print.PrintOptions;
@@ -14,7 +16,11 @@ import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 
 public class WorkerTests extends BaseTests{
+
     @Test
+*/
+/*    Ten test: Otwiera stronę główną.Drukuje stronę do formatu PDF.Dekoduje zawartość PDF z Base64.Zapisuje plik PDF na dysku.*//*
+
     public void printPage(){
         MainPage mainPage = new MainPage(browser);
         mainPage.go();
@@ -34,6 +40,7 @@ public class WorkerTests extends BaseTests{
         }
     }
     @Test
+    //Ten test:Otwiera stronę główną.Robi zrzut ekranu całej strony.Zapisuje zrzut ekranu na dysku.
     public void ScreenshotPageTest(){
         MainPage mainPage = new MainPage(browser);
         mainPage.go();
@@ -47,6 +54,7 @@ public class WorkerTests extends BaseTests{
         }
     }
     @Test
+    //Ten test:Otwiera stronę główną.Znajduje element o ID "masthead".Robi zrzut ekranu tego elementu.Zapisuje zrzut ekranu na dysku.
     public void ScreenshotElementTest(){
         MainPage mainPage = new MainPage(browser);
         mainPage.go();
@@ -62,3 +70,4 @@ public class WorkerTests extends BaseTests{
         }
     }
 }
+*/

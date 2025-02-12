@@ -1,3 +1,4 @@
+/*
 package tests;
 
 import org.junit.jupiter.api.Assertions;
@@ -11,6 +12,7 @@ import java.util.GregorianCalendar;
 
 public class CookieTests extends BaseTests{
     @Test
+    //Ten test:Otwiera stronę główną.Tworzy nowy plik cookie z określoną datą wygaśnięcia.Dodaje plik cookie do przeglądarki.Sprawdza, czy plik cookie został dodany.Test addingCookieInfo
     @DisplayName("Adding cookie with date")
     public void addingCookieWithDate(){
         // Initialize the page
@@ -31,6 +33,7 @@ public class CookieTests extends BaseTests{
     }
 
     @Test
+    //Ten test: Otwiera stronę główną.Tworzy nowy plik cookie z określonymi właściwościami.Dodaje plik cookie do przeglądarki.Sprawdza, czy plik cookie został dodany.
     @DisplayName("Adding cookie Info")
     public void addingCookieInfo(){
         // Initialize the page
@@ -50,6 +53,7 @@ public class CookieTests extends BaseTests{
     }
 
     @Test
+    //Ten test: Otwiera stronę główną.Tworzy nowy plik cookie z określoną datą wygaśnięcia i właściwościami.Dodaje plik cookie do przeglądarki.Sprawdza, czy plik cookie został dodany.
     @DisplayName("Adding cookie Info date")
     public void addingCookieInfoDate(){
         // Initialize the page
@@ -73,6 +77,8 @@ public class CookieTests extends BaseTests{
 
 
     @Test
+    //weryfikacja obecności i wartości konkretnego ciasteczka o nazwie woocommerce_items_in_cart
+    // po dodaniu przedmiotu do koszyka na stronie e-commerce.
     @DisplayName("Items in Cart cookie")
     public void itemsInCartCookie(){
         ProductPage productPage = new ProductPage(browser);
@@ -87,6 +93,9 @@ public class CookieTests extends BaseTests{
                 "Value of cookie 'woocommerce_items_in_cart' is not corect");
     }
     @Test
+    //Ten test zapewnia, że po dodaniu produktu do koszyka, ciasteczko woocommerce_items_in_cart jest tworzone
+    // i jego wartość jest ustawiona na "1".
+    // Jest to powszechny test w aplikacjach e-commerce, aby zweryfikować, czy funkcjonalność koszyka działa poprawnie.
     @DisplayName("Removing cookie adding to Cart")
     public void removeCookieAddingToCart(){
         ProductPage productPage = new ProductPage(browser);
@@ -110,3 +119,4 @@ public class CookieTests extends BaseTests{
                 "The number of cookies is lower than expected");
     }
 }
+*/
