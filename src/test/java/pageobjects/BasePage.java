@@ -7,7 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public abstract class BasePage {
     private final By loadingIcon = By.cssSelector(".blockUI");
-
+//d
     protected final WebDriver driver;
     protected final Browser browser;
     protected final String baseURL;
